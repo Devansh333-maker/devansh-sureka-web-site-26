@@ -1,0 +1,86 @@
+{
+ "slug": "ecolite",
+ "title": "EcoLite",
+ "kind": "Product management competition · round 1",
+ "context": "Round 1 of a product management competition, on the theme \"Green is the New Gold: Designing Sustainable Products for the Future\".",
+ "summary": "I designed EcoLite, a smart street light that runs on both wind and solar power, and pitched it as an answer to fossil-fuelled, costly and unreliable street lighting. The deck covers the problem, six product features, how the system works, implementation challenges and solutions, the business model and the team.",
+ "points": [
+  "Hybrid wind and solar street lights with battery storage, smart control and IoT monitoring.",
+  "Eight implementation challenges paired with solutions, from upfront costs to community acceptance.",
+  "Revenue from direct sales to municipalities and private clients, carbon offset programmes and smart city collaborations."
+ ],
+ "mode": "deck",
+ "pages": [
+  {
+   "src": "/opt/studies/ecolite/01.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/ecolite/02.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/ecolite/03.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/ecolite/04.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/ecolite/05.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/ecolite/06.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/ecolite/07.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/ecolite/08.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/ecolite/09.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/ecolite/10.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/ecolite/11.webp",
+   "w": 1600,
+   "h": 900
+  }
+ ],
+ "body": [
+  {
+   "h": "About the deck"
+  },
+  {
+   "p": "EcoLite is a smart hybrid street light that generates power from both wind and solar, stores it in batteries and manages use through a smart control system. In parts of the deck the product is also called Jyoti, the name used alongside EcoLite in the original proposal."
+  },
+  {
+   "list": [
+    "**Why now:** urban expansion, rural populations moving to cities, and government support for renewable energy, including measures in India's 2025 Union Budget.",
+    "**Features:** hybrid power generation, smart energy management, energy-efficient LED lights, IoT integration, durable design, and a modular, scalable build.",
+    "**Challenges and solutions:** high upfront costs, space for turbines, community acceptance and maintenance, met with government incentives, financing models, community engagement and local support networks.",
+    "**Business model:** direct sales to municipalities and private clients, carbon offset programmes and smart city collabourations."
+   ]
+  }
+ ]
+}

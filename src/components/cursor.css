@@ -1,0 +1,148 @@
+/* the surveyor's crosshair cursor */
+.cursor-cross,
+.cursor-read {
+  position: fixed;
+  left: 0;
+  top: 0;
+  /* above everything, full-screen viewers included */
+  z-index: 2147483000;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+html.cursor-in .cursor-cross,
+html.cursor-in .cursor-read {
+  opacity: 1;
+}
+html.cursor-text .cursor-cross,
+html.cursor-text .cursor-read {
+  opacity: 0;
+}
+
+.cursor-cross {
+  width: 0;
+  height: 0;
+  /* ink ticks with a paper-coloured halo: readable on any background */
+  color: #1d1915;
+  --halo: rgba(243, 235, 221, 0.9);
+}
+html[data-theme='dark'] .cursor-cross {
+  color: #f3ebdd;
+  --halo: rgba(13, 11, 16, 0.85);
+}
+.cursor-cross i,
+.cursor-cross__in > b {
+  box-shadow: 0 0 0 1px var(--halo);
+}
+.cursor-cross i {
+  position: absolute;
+  background: currentColor;
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1),
+    width 0.35s cubic-bezier(0.2, 0.9, 0.3, 1),
+    height 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+/* four ticks around an open centre */
+.cursor-cross__t,
+.cursor-cross__b {
+  left: -0.75px;
+  width: 1.5px;
+  height: 7px;
+}
+.cursor-cross__l,
+.cursor-cross__r {
+  top: -0.75px;
+  width: 7px;
+  height: 1.5px;
+}
+.cursor-cross__t {
+  bottom: 4px;
+}
+.cursor-cross__b {
+  top: 4px;
+}
+.cursor-cross__l {
+  right: 4px;
+}
+.cursor-cross__r {
+  left: 4px;
+}
+.cursor-cross__in > b {
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #e0532f; /* the vermilion point */
+  transition: transform 0.3s;
+}
+/* over something clickable: the ticks turn 45° and open out into a sighting frame */
+.cursor-cross__in {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  transition: rotate 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+.cursor-cross.is-hot .cursor-cross__in {
+  rotate: 45deg;
+}
+.cursor-cross.is-hot .cursor-cross__t {
+  transform: translate(0, -6px) scaleY(1.6);
+}
+.cursor-cross.is-hot .cursor-cross__b {
+  transform: translate(0, 6px) scaleY(1.6);
+}
+.cursor-cross.is-hot .cursor-cross__l {
+  transform: translate(-6px, 0) scaleX(1.6);
+}
+.cursor-cross.is-hot .cursor-cross__r {
+  transform: translate(6px, 0) scaleX(1.6);
+}
+.cursor-cross.is-hot .cursor-cross__in > b {
+  transform: scale(1.5);
+}
+.cursor-cross.is-down .cursor-cross__in > b {
+  transform: scale(0.6);
+}
+
+/* the readout: tiny, like a total station's display */
+.cursor-read {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: pre;
+  color: #fff;
+  mix-blend-mode: difference;
+}
+html:not(.cursor-in) .cursor-read {
+  opacity: 0;
+}
+
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+html.has-cursor input,
+html.has-cursor textarea,
+html.has-cursor [contenteditable='true'] {
+  cursor: text !important;
+}
+
+/* over something clickable the readout becomes a small solid tag that reads on any background */
+.cursor-read.is-hot {
+  mix-blend-mode: normal;
+  padding: 3px 7px 2px;
+  border-radius: 999px;
+  background: #1d1915;
+  color: #f3ebdd;
+  box-shadow: 0 2px 8px rgba(20, 14, 8, 0.25);
+}
+html[data-theme='dark'] .cursor-read.is-hot {
+  background: #f3ebdd;
+  color: #1d1915;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}

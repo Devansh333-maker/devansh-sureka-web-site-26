@@ -1,0 +1,494 @@
+/* Diagrams and charts used inside the places */
+
+.fig {
+  margin: 0;
+}
+.fig figcaption,
+.fig > figcaption {
+  margin-top: 1rem;
+  max-width: 42rem;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* ── brick strength ── */
+.fig-strength__plot {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(0.6rem, 2vw, 1.6rem);
+  height: clamp(16rem, 34vw, 22rem);
+  border-bottom: 1px solid var(--ink);
+}
+.fig-strength__line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 1px dashed var(--accent);
+  z-index: 2;
+}
+.fig-strength__line span {
+  position: absolute;
+  right: 0;
+  top: -1.4rem;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--accent);
+  background: var(--bg-2);
+  padding: 0 0.3rem;
+}
+.fig-strength__col {
+  display: flex;
+  align-items: flex-end;
+}
+.fig-strength__bar {
+  position: relative;
+  width: 100%;
+  background: #a98c6c;
+  border-radius: 2px 2px 0 0;
+  transform-origin: bottom;
+  transform: scaleY(0);
+  transition: transform 1.1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal.is-in .fig-strength__bar,
+.reveal:not(.is-waiting) .fig-strength__bar {
+  transform: scaleY(1);
+}
+.fig-strength__bricks {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(42, 27, 16, 0.22) 1px, transparent 1px), linear-gradient(90deg, rgba(42, 27, 16, 0.22) 1px, transparent 1px);
+  background-size: 100% 14px, 50% 28px;
+  background-position: 0 0, 25% 14px;
+  mix-blend-mode: multiply;
+}
+.fig-strength__col.is-peak .fig-strength__bar {
+  background: var(--accent);
+}
+.fig-strength__val {
+  position: absolute;
+  top: -1.9rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--display);
+  font-size: 1.5rem;
+}
+.fig-strength__axis {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(0.6rem, 2vw, 1.6rem);
+  margin-top: 0.7rem;
+}
+.fig-strength__axis div {
+  display: grid;
+  gap: 0.15rem;
+}
+.fig-strength__axis strong {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 12px;
+}
+.fig-strength__axis span {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+/* ── mix composition ── */
+.fig-mix__row {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.45rem;
+}
+.fig-mix__id {
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.fig-mix__bar {
+  display: flex;
+  height: 18px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.fig-mix .is-fly {
+  background: #cdbb9f;
+}
+.fig-mix .is-lime {
+  background: #f3efe6;
+  box-shadow: inset 0 0 0 1px var(--rule);
+}
+.fig-mix .is-parali {
+  background: #c8a13a;
+}
+.fig-mix .is-plastic {
+  background: var(--accent-2);
+}
+.fig-mix__key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.2rem;
+}
+.fig-mix__key span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none !important;
+  box-shadow: none !important;
+}
+.fig-mix__key span::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+.fig-mix__key .is-fly::before {
+  background: #cdbb9f;
+}
+.fig-mix__key .is-lime::before {
+  background: #f3efe6;
+  box-shadow: inset 0 0 0 1px var(--rule);
+}
+.fig-mix__key .is-parali::before {
+  background: #c8a13a;
+}
+.fig-mix__key .is-plastic::before {
+  background: var(--accent-2);
+}
+
+/* ── water flow ── */
+.fig-water svg {
+  width: 100%;
+  height: auto;
+  color: var(--ink);
+  font-family: var(--mono);
+}
+.fig-water .pipe {
+  stroke: #cfdde0;
+}
+.fig-water .pipe--clean {
+  stroke: #9cc5cf;
+}
+.fig-water .pipe--reject {
+  stroke: #d9a789;
+}
+.fig-water .pipe--loss {
+  stroke: #e7d6c3;
+}
+.fig-water__flow path {
+  stroke: #ffffff;
+  animation: flow 1.6s linear infinite;
+}
+@keyframes flow {
+  to {
+    stroke-dashoffset: -32;
+  }
+}
+.fig-water__tanks rect {
+  fill: var(--bg);
+  stroke: var(--ink);
+  stroke-width: 1.2;
+}
+.fig-water__tanks text {
+  font-size: 12px;
+  text-anchor: middle;
+  fill: var(--ink);
+}
+.fig-water text.sub {
+  font-size: 10px;
+  fill: var(--muted);
+}
+.fig-water__labels text {
+  font-size: 12.5px;
+  fill: var(--ink);
+}
+.fig-water__labels .is-reject {
+  fill: var(--accent);
+}
+
+/* ── hardness glasses ── */
+.fig-glass {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.fig-glass__glass {
+  position: relative;
+  width: 64px;
+  height: 92px;
+  border: 1.5px solid var(--ink);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  clip-path: polygon(0 0, 100% 0, 88% 100%, 12% 100%);
+  overflow: hidden;
+}
+.fig-glass__glass span {
+  position: absolute;
+  inset: 18% 0 0;
+  background: #b79265;
+}
+.fig-glass__ppm {
+  margin-top: 0.6rem;
+  font-family: var(--display);
+  font-size: 1.6rem;
+}
+.fig-glass__label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ── pipeline ── */
+.fig-pipe {
+  position: relative;
+}
+.fig-pipe ol {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border: 1px solid var(--ink);
+}
+.fig-pipe li {
+  display: grid;
+  gap: 0.35rem;
+  align-content: start;
+  padding: 1.1rem 1rem 1.3rem;
+  border-right: 1px solid var(--rule);
+  animation: pipe-lit 3s ease-in-out infinite;
+}
+.fig-pipe li:last-child {
+  border-right: none;
+}
+@keyframes pipe-lit {
+  0%,
+  12% {
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+  }
+  30%,
+  100% {
+    background: transparent;
+  }
+}
+.fig-pipe__n {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+}
+.fig-pipe strong {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.fig-pipe li > span:last-child {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.fig-pipe__track {
+  height: 2px;
+  background: var(--rule);
+  position: relative;
+  overflow: hidden;
+}
+.fig-pipe__track span {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 20%;
+  background: var(--accent);
+  animation: track 3s linear infinite;
+}
+@keyframes track {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(500%);
+  }
+}
+
+/* ── 26 variations ── */
+.fig-systems {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.fig-systems__col {
+  background: var(--bg);
+  padding: 1rem 1.1rem 1.2rem;
+}
+.fig-systems__col p {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
+}
+.fig-systems__col li {
+  font-size: 14px;
+  padding: 0.2rem 0;
+}
+
+/* ── week bars ── */
+.fig-week__plot {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(0.6rem, 2vw, 1.4rem);
+  height: 16rem;
+  align-items: end;
+  border-bottom: 1px solid var(--ink);
+}
+.fig-week__col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  position: relative;
+}
+.fig-week__bar {
+  background: var(--ink);
+  transform-origin: bottom;
+  transform: scaleY(0);
+  transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.fig-week__bar.is-partial {
+  background: repeating-linear-gradient(135deg, var(--ink) 0 4px, transparent 4px 8px);
+  box-shadow: inset 0 0 0 1px var(--ink);
+}
+.reveal:not(.is-waiting) .fig-week__bar {
+  transform: scaleY(1);
+}
+.fig-week__col:last-child .fig-week__bar {
+  background: var(--accent);
+}
+.fig-week__n {
+  font-family: var(--display);
+  font-size: 1.35rem;
+  margin-bottom: 0.3rem;
+}
+.fig-week__d {
+  position: absolute;
+  bottom: -1.6rem;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+.fig-week figcaption {
+  margin-top: 2.4rem;
+}
+
+/* ── cities ── */
+.fig-cities {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--ink);
+}
+.fig-cities > div {
+  padding: 1rem 1rem 1.2rem 0;
+}
+.fig-cities__y {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.fig-cities li {
+  font-family: var(--display);
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+.fig-cities li.is-bet::after {
+  content: ' ← the contrarian bet';
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--accent);
+}
+.fig-cities__share {
+  margin-top: 0.6rem;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ── scoreboard ── */
+
+/* ── escalation ladder ── */
+.fig-ladder {
+  display: grid;
+  gap: 0.5rem;
+}
+.fig-ladder li {
+  font-family: var(--display);
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.fig-ladder li span {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  margin-right: 0.6rem;
+}
+
+/* ── umang ── */
+.fig-umang__row {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr 5.5rem;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.7rem;
+}
+.fig-umang__y,
+.fig-umang__s {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--muted);
+}
+.fig-umang__bar {
+  height: 2.2rem;
+  background: var(--accent);
+  color: #fbeee3;
+  display: flex;
+  align-items: center;
+  padding-left: 0.8rem;
+  font-size: 13px;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  white-space: nowrap;
+}
+.reveal:not(.is-waiting) .fig-umang__bar {
+  transform: scaleX(1);
+}
+
+@media (max-width: 760px) {
+  .fig-pipe ol {
+    grid-template-columns: 1fr;
+  }
+  .fig-pipe li {
+    border-right: none;
+    border-bottom: 1px solid var(--rule);
+  }
+  .fig-glass {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .fig-cities {
+    grid-template-columns: 1fr;
+  }
+  .fig-strength__axis span {
+    display: none;
+  }
+  .fig-strength__line span {
+    font-size: 9px;
+  }
+  .fig-umang__row {
+    grid-template-columns: 5.5rem 1fr;
+  }
+  .fig-umang__s {
+    display: none;
+  }
+}
+

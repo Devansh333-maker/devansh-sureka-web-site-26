@@ -1,0 +1,104 @@
+/* the ambient sound switch */
+.sound-toggle {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 150;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  height: 34px;
+  padding: 0 0.85rem 0 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(20, 17, 15, 0.14);
+  background: rgba(251, 247, 240, 0.85);
+  color: #14110f;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 6px 20px -10px rgba(20, 17, 15, 0.35);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.sound-toggle:hover {
+  transform: translateY(-1px);
+}
+.sound-toggle:focus-visible {
+  outline: 2px solid #c2402a;
+  outline-offset: 2px;
+}
+.sound-toggle__bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+}
+.sound-toggle__bars i {
+  width: 2px;
+  height: 3px;
+  background: currentColor;
+  border-radius: 1px;
+  transition: height 0.3s;
+}
+.sound-toggle.is-on .sound-toggle__bars i {
+  animation: sound-eq 1.1s ease-in-out infinite;
+}
+.sound-toggle.is-on .sound-toggle__bars i:nth-child(2) {
+  animation-delay: -0.35s;
+}
+.sound-toggle.is-on .sound-toggle__bars i:nth-child(3) {
+  animation-delay: -0.7s;
+}
+.sound-toggle.is-on .sound-toggle__bars i:nth-child(4) {
+  animation-delay: -0.2s;
+}
+@keyframes sound-eq {
+  0%,
+  100% {
+    height: 3px;
+  }
+  50% {
+    height: 12px;
+  }
+}
+/* dark pages and the night sky */
+body:has([data-place='arena']) .sound-toggle,
+body:has(.world[data-sky='night']) .sound-toggle {
+  background: rgba(20, 22, 30, 0.75);
+  color: #f1ede6;
+  border-color: rgba(241, 237, 230, 0.16);
+}
+@media (prefers-reduced-motion: reduce) {
+  .sound-toggle.is-on .sound-toggle__bars i {
+    animation: none;
+    height: 8px;
+  }
+}
+/* phones: a round button at the left of the motion/search row (see motion.css) */
+@media (max-width: 760px) {
+  .sound-toggle {
+    left: auto;
+    right: 106px;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    top: auto;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    justify-content: center;
+    transition: opacity 0.4s ease;
+  }
+  body:has(.world) .sound-toggle {
+    top: 72px;
+    bottom: auto;
+  }
+  .sound-toggle__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+}

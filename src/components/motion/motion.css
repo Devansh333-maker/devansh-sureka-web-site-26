@@ -1,0 +1,91 @@
+/* motion paused: every CSS animation jumps to its resting state, transitions go instant */
+html[data-motion='off'] *,
+html[data-motion='off'] *::before,
+html[data-motion='off'] *::after {
+  animation-duration: 0.001ms !important;
+  animation-delay: 0s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* the switch: same shape as the theme switch */
+.motion-toggle {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.motion-toggle:hover {
+  opacity: 1;
+}
+.motion-toggle svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* phones: the header has no room, so sound, motion and search sit together in one row:
+   bottom-right on inner pages (the thumb's corner), and in the gap under the header on
+   the home page, whose bottom belongs to the places panel. 40px each, an easy tap. */
+.float-controls {
+  display: none;
+}
+@media (max-width: 760px) {
+  .site-bar .motion-toggle,
+  .hud-nav .motion-toggle {
+    display: none;
+  }
+  .float-controls {
+    position: fixed;
+    right: 14px;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    z-index: 150;
+    display: flex;
+    gap: 6px;
+    transition: opacity 0.4s ease;
+  }
+  body:has(.world) .float-controls {
+    top: 72px;
+    bottom: auto;
+  }
+  /* nothing floats over the intro */
+  body:has(.world:not([data-phase='ready'])) .float-controls,
+  body:has(.world:not([data-phase='ready'])) .sound-toggle {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .float-controls button {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(20, 17, 15, 0.14);
+    background: rgba(251, 247, 240, 0.88);
+    color: #14110f;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 6px 20px -10px rgba(20, 17, 15, 0.35);
+    opacity: 1;
+  }
+  html[data-theme='dark'] .float-controls button,
+  body:has([data-place='arena']) .float-controls button,
+  body:has(.world[data-sky='night']) .float-controls button {
+    background: rgba(29, 26, 22, 0.85);
+    color: #efe7da;
+    border-color: rgba(239, 231, 218, 0.16);
+  }
+  .float-controls svg {
+    width: 15px;
+    height: 15px;
+  }
+}

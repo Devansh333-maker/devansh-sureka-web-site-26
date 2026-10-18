@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Share cards: how your links look</title>
+<style>
+  body { margin: 0; font-family: Segoe UI, system-ui, sans-serif; background: #eceae6; color: #1d1915; }
+  header { padding: 28px 32px 8px; max-width: 1180px; margin: 0 auto; }
+  h1 { margin: 0 0 6px; font-size: 26px; }
+  header p { margin: 0; color: #5b4f43; max-width: 760px; line-height: 1.5; }
+  .pick { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; }
+  .pick button { border: 1px solid #c9bfb2; background: #fff; border-radius: 999px; padding: 7px 14px; font: inherit; font-size: 14px; cursor: pointer; }
+  .pick button.on { background: #1d1915; color: #fff; border-color: #1d1915; }
+  .stage { display: flex; flex-wrap: wrap; gap: 28px; padding: 22px 32px 40px; max-width: 1180px; margin: 0 auto; align-items: flex-start; }
+  .cp { margin-left: 10px; border: 1px solid #c9bfb2; background: #fff; border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 11px; letter-spacing: .06em; cursor: pointer; }
+  .label { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #7a6d60; margin: 0 0 10px; }
+
+  /* WhatsApp chat */
+  .wa { width: 380px; border-radius: 22px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,.18); background: #efe7de; }
+  .wa__top { background: #075e54; color: #fff; padding: 14px 16px; display: flex; gap: 10px; align-items: center; font-size: 15px; }
+  .wa__top i { width: 34px; height: 34px; border-radius: 50%; background: #cfd8dc; display: block; }
+  .wa__top small { display: block; opacity: .8; font-size: 12px; }
+  .wa__body { padding: 16px 12px 22px; min-height: 380px; background: #e9e0d4; }
+  .bubble { margin-left: auto; width: 300px; background: #d9fdd3; border-radius: 10px 0 10px 10px; padding: 4px; box-shadow: 0 1px 1px rgba(0,0,0,.12); }
+  .bubble .prev { background: #cfeec8; border-radius: 7px; overflow: hidden; }
+  .bubble img { display: block; width: 100%; aspect-ratio: 1200/630; object-fit: cover; }
+  .bubble .t { padding: 7px 9px 0; font-weight: 600; font-size: 14px; }
+  .bubble .d { padding: 2px 9px 0; font-size: 12.5px; color: #3b4a3f; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .bubble .u { padding: 3px 9px 8px; font-size: 12px; color: #667; }
+  .bubble .msg { padding: 6px 7px 2px; font-size: 14.5px; }
+  .bubble .msg a { color: #027eb5; }
+  .bubble .tm { text-align: right; font-size: 11px; color: #667; padding: 0 6px 3px; }
+
+  /* LinkedIn post */
+  .li { width: 520px; background: #fff; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,.12); overflow: hidden; }
+  .li__head { display: flex; gap: 10px; padding: 14px 16px 6px; align-items: center; }
+  .li__head i { width: 46px; height: 46px; border-radius: 50%; background: url('../../public/brand/portrait-mark.png') center/cover; display: block; }
+  .li__head b { display: block; font-size: 14.5px; }
+  .li__head small { color: #666; font-size: 12px; }
+  .li__text { padding: 6px 16px 12px; font-size: 14px; line-height: 1.45; }
+  .li img { display: block; width: 100%; aspect-ratio: 1200/630; object-fit: cover; }
+  .li__card { background: #f3f2ef; padding: 10px 14px 12px; }
+  .li__card .t { font-weight: 600; font-size: 14px; }
+  .li__card .u { font-size: 12px; color: #666; margin-top: 2px; }
+  .li__bar { display: flex; justify-content: space-around; padding: 10px; color: #666; font-size: 13px; border-top: 1px solid #e6e6e6; }
+
+  .all { max-width: 1180px; margin: 0 auto; padding: 0 32px 50px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .grid figure { margin: 0; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,.08); cursor: pointer; }
+  .grid img { display: block; width: 100%; }
+  .grid figcaption { padding: 8px 10px; font-size: 13px; }
+  .note { max-width: 1180px; margin: 0 auto; padding: 0 32px 18px; font-size: 14px; color: #5b4f43; line-height: 1.5; }
+</style>
+</head>
+<body>
+<header>
+  <h1>How your links look when shared</h1>
+  <p>When someone pastes a page of your site into WhatsApp or LinkedIn, the app reads a hidden "share card" from that page and shows this preview. Each page shows its own picture, what it's about, and three numbers that prove it. Pick a page:</p>
+  <div class="pick" id="pick"></div>
+</header>
+
+<div class="stage">
+  <div>
+    <p class="label">On WhatsApp <button class="cp" onclick="copyIt(0, this)">Copy message</button></p>
+    <div class="wa">
+      <div class="wa__top"><i></i><div>Friend<small>online</small></div></div>
+      <div class="wa__body">
+        <div class="bubble">
+          <div class="prev">
+            <img id="wa-img" alt="">
+            <div class="t" id="wa-t"></div>
+            <div class="d" id="wa-d"></div>
+            <div class="u">devanshsureka.com</div>
+          </div>
+          <div class="msg"><span id="wa-msg"></span><br><a id="wa-link"></a></div>
+          <div class="tm">10:42 ✓✓</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <p class="label">On LinkedIn <button class="cp" onclick="copyIt(1, this)">Copy post</button></p>
+    <div class="li">
+      <div class="li__head"><i></i><div><b>Devansh Sureka</b><small>BITS Pilani ’27 · Just now</small></div></div>
+      <div class="li__text" id="li-msg" style="white-space:pre-line"></div>
+      <img id="li-img" alt="">
+      <div class="li__card"><div class="t" id="li-t"></div><div class="u">devanshsureka.com</div></div>
+      <div class="li__bar"><span>👍 Like</span><span>💬 Comment</span><span>↗ Repost</span><span>➤ Send</span></div>
+    </div>
+  </div>
+</div>
+
+<p class="note">The web address shown (devanshsureka.com) is only an example; it will be your real address once the site is hosted. Notebook posts show the Notebook card, or the post's own cover picture if it's a .jpg or .png. The homepage keeps your original card (with your name and three headline numbers).</p>
+
+<div class="all">
+  <p class="label">All the cards</p>
+  <div class="grid" id="grid"></div>
+</div>
+
+<script>
+  const IMG = '../../public/';
+  const NEW = '../../public/';
+  const src = (p) => (p.img.startsWith('og/') ? NEW : IMG) + p.img;
+  const pages = [
+    { k: 'home', img: 'og.png', path: '', t: 'Devansh Sureka', d: 'Civil engineering student at BITS Pilani who builds systems, leads people and captained the roll ball team to its first InterBITS gold.' },
+    { k: 'workshop', img: 'og/workshop.jpg', path: '/workshop', t: 'The Workshop · Devansh Sureka', d: 'Bricks from parali and plastic waste (6.5 MPa, ₹2L funded), 20 KL a day of wasted water found at Akshaya Patra, and 3D models: civil engineering at BITS Pilani.' },
+    { k: 'studio', img: 'og/studio.jpg', path: '/studio', t: 'The Systems Studio · Devansh Sureka', d: 'The AI publishing systems I built at Univest, India’s No. 1 SEBI-registered investment advisory (11.38M Google impressions), a self-hosted AI workspace, and go-to-market strategy for Spotify and House of Fandom.' },
+    { k: 'chaupal', img: 'og/chaupal.jpg', path: '/chaupal', t: 'The Chaupal · Devansh Sureka', d: 'A year as NSS Secretary at BITS Pilani: 7 villages, 200+ volunteers, 30+ initiatives, and the systems the next team inherits.' },
+    { k: 'arena', img: 'og/arena.jpg', path: '/arena', t: 'The Arena · Devansh Sureka', d: 'Roll ball on skates at BITS Pilani: I captained the team to its first-ever team gold at InterBITS.' },
+    { k: 'press', img: 'og/press.jpg', path: '/press', t: 'The Press · Devansh Sureka', d: 'Reviving L.I.T.E., the civil department magazine, after five silent years as Editor-in-Chief; a top-20 IIT Bombay Techfest ambassador; posters and campaigns.' },
+    { k: 'notebook', img: 'og/notebook.jpg', path: '/notebook', t: 'The Notebook · Devansh Sureka', d: 'Essays, field notes and build logs, including how this site went from thirty days to build to about three.' },
+    { k: 'about', img: 'og/about.jpg', path: '/about', t: 'About · Devansh Sureka', d: 'Civil engineering student at BITS Pilani from Jaipur. Builder, former NSS Secretary and roll ball captain, and someone who writes everything down.' },
+    { k: 'work', img: 'og/work.jpg', path: '/work', t: 'Work · Devansh Sureka', d: 'Every role and project in one list, most important first: Univest, NSS, InterBITS gold, Akshaya Patra, House of Fandom and more, each linked to its full story.' },
+  ];
+  let curCap = null;
+  function copyIt(i, b) { navigator.clipboard.writeText(curCap[i] + (i ? '\n\n' : ' ') + document.getElementById('wa-link').textContent).then(() => { const o = b.textContent; b.textContent = 'Copied ✓'; setTimeout(() => (b.textContent = o), 1500); }); }
+  const CAP = {"home": ["Rebuilt my portfolio from scratch. It’s a small island now: click a building to see the work behind it 🏝️", "I rebuilt my portfolio as a small world you can walk around.\n\nSix places, one for each kind of work: the bricks I’m making from crop and plastic waste, the AI systems at Univest that reached 11.38 million Google impressions, a year running NSS across 7 villages, and the roll ball team that won BITS Pilani its first InterBITS team gold.\n\nA year ago the first version took me 30 days. This one took about 3. Have a look around:"], "workshop": ["The bricks I’ve been making from crop and plastic waste, plus the water I found going down the drain at Akshaya Patra 🧱", "Two problems I worked on as a civil engineering student:\n\n• Bricks made from parali and plastic waste. Our best mix reached 6.5 MPa, backed by ₹2L of institute research funding.\n• At Akshaya Patra’s Jaipur kitchen, 20 KL of water a day was being thrown away. I traced it and costed three ways to recover it.\n\nThe full story, with the numbers:"], "studio": ["The publishing systems I built at Univest: 11.38M Google impressions, mostly running on their own ⚙️", "At Univest, India’s No. 1 SEBI-registered investment advisory, I built publishing systems that spot market moves and publish the article while the market is still moving.\n\n11.38 million Google impressions and 57,941 clicks in three and a half months. 26 kinds of article, and the cost of each one fell by more than half.\n\nHow it works, plus my strategy work for Spotify and House of Fandom:"], "chaupal": ["My year as NSS Secretary: 7 villages, 200+ volunteers, and the systems we left behind 🌳", "A year as NSS Secretary at BITS Pilani taught me more about systems than any course.\n\n7 villages. 200+ volunteers. 30+ initiatives, run with zero external sponsorship. And finance guidelines, templates and a treasurer portal, so the next team doesn’t start from zero.\n\nThe whole year, in one place:"], "arena": ["The InterBITS final, told like an anime opening. First-ever team gold for BITS Pilani 🛼", "At InterBITS 2025 in Hyderabad, our roll ball team brought home BITS Pilani’s first-ever team gold.\n\nI captained the team that year. I’ve rebuilt the final as a short animated film, along with what captaincy actually involved: the first girls’ team, three boys’ teams, a coach and a team that runs with order.\n\nWatch it (best with sound):"], "press": ["The magazine I brought back after five silent years, and the posters from Techfest 📰", "As Editor-in-Chief I revived L.I.T.E., our civil engineering department’s magazine, after five silent years.\n\nIt’s now a flip-book you can read page by page, next to my IIT Bombay Techfest work (top 20 of the national ambassador cohort) and a wall of posters.\n\nRead it here:"], "notebook": ["Same portfolio, built twice, a year apart: 30 days the first time, 3 the second. Drag across to compare ✍️", "A year ago my first website took me 30 days. This year I rebuilt it in about 3.\n\nI wrote down what changed: in the tools, in how I work, and in what I now think a portfolio should do. There’s a slider so you can drag between the old site and the new one.\n\nThe notebook entry:"], "about": ["The short version of me: skates in Jaipur, civil engineering at BITS Pilani, and what I’m building now 👋", "From a skating rink in Jaipur to civil engineering at BITS Pilani.\n\nI put the story in one scrolling page: the people, the places and the one rule I try to keep, which is to get into things properly.\n\nIf you’d like to know who’s behind the work:"], "work": ["Everything I’ve done in one list, if you don’t have time to wander 📋", "For anyone who’d rather skip the walk around: every role and project I’ve had, in one list, most important first.\n\nUnivest, NSS, InterBITS gold, Akshaya Patra, House of Fandom and more, each linked to the full story:"]};
+  const pick = document.getElementById('pick');
+  const grid = document.getElementById('grid');
+  function show(p) {
+    for (const id of ['wa-img', 'li-img']) document.getElementById(id).src = src(p);
+    document.getElementById('wa-t').textContent = p.t;
+    document.getElementById('wa-d').textContent = p.d;
+    document.getElementById('li-t').textContent = p.t;
+    document.getElementById('wa-link').textContent = 'devanshsureka.com' + p.path;
+    document.getElementById('wa-msg').textContent = CAP[p.k][0];
+    document.getElementById('li-msg').textContent = CAP[p.k][1];
+    curCap = CAP[p.k];
+    [...pick.children].forEach((b) => b.classList.toggle('on', b.dataset.k === p.k));
+  }
+  for (const p of pages) {
+    const b = document.createElement('button');
+    b.textContent = p.k === 'home' ? 'Homepage' : p.t.split(' · ')[0];
+    b.dataset.k = p.k;
+    b.onclick = () => show(p);
+    pick.appendChild(b);
+    const f = document.createElement('figure');
+    f.innerHTML = `<img src="${src(p)}" alt=""><figcaption>${p.k === 'home' ? 'Homepage' : p.t.split(' · ')[0]}</figcaption>`;
+    f.onclick = () => { show(p); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+    grid.appendChild(f);
+  }
+  show(pages[1]);
+</script>
+</body>
+</html>

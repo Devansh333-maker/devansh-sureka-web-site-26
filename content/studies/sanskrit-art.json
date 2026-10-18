@@ -1,0 +1,118 @@
+{
+  "slug": "sanskrit-art",
+  "title": "Sanskrit art integrated project",
+  "kind": "Sanskrit · art integrated project",
+  "year": "2021",
+  "context": "A Class X Sanskrit art integrated project at Delhi Public School, Jaipur, made with five classmates.",
+  "summary": "This is a Class X group project on the state of Assam, written entirely in Sanskrit. It opens with a Sanskrit dialogue between two of us, Bhavya and me, about a trip to Assam, then covers the state's key facts, music, dance, food, arts and crafts, the Kamakhya temple and Kaziranga National Park.",
+  "points": [
+    "Written entirely in Sanskrit, in Devanagari script, as a Class X art integrated project.",
+    "Sixteen slides on Assam: facts, music, dance, food, crafts, Kamakhya temple and Kaziranga.",
+    "A team of six students; framed as a Sanskrit conversation between Bhavya and Devansh."
+  ],
+  "mode": "deck",
+  "pages": [
+    {
+      "src": "/opt/studies/sanskrit-art/01.webp",
+      "w": 1600,
+      "h": 900
+    },
+    {
+      "src": "/opt/studies/sanskrit-art/02.webp",
+      "w": 1600,
+      "h": 900
+    },
+    {
+      "src": "/opt/studies/sanskrit-art/03.webp",
+      "w": 1600,
+      "h": 900
+    },
+    {
+      "src": "/opt/studies/sanskrit-art/04.webp",
+      "w": 1600,
+      "h": 900
+    },
+    {
+      "src": "/opt/studies/sanskrit-art/05.webp",
+      "w": 1600,
+      "h": 900
+    },
+    {
+      "src": "/opt/studies/sanskrit-art/06.webp",
+      "w": 1600,
+      "h": 900
+    },
+    {
+      "src": "/opt/studies/sanskrit-art/07.webp",
+      "w": 1600,
+      "h": 900
+    },
+    {
+      "src": "/opt/studies/sanskrit-art/08.webp",
+      "w": 1600,
+      "h": 900
+    },
+    {
+      "src": "/opt/studies/sanskrit-art/09.webp",
+      "w": 1600,
+      "h": 900
+    },
+    {
+      "src": "/opt/studies/sanskrit-art/10.webp",
+      "w": 1600,
+      "h": 900
+    },
+    {
+      "src": "/opt/studies/sanskrit-art/11.webp",
+      "w": 1600,
+      "h": 900
+    },
+    {
+      "src": "/opt/studies/sanskrit-art/12.webp",
+      "w": 1600,
+      "h": 900
+    },
+    {
+      "src": "/opt/studies/sanskrit-art/13.webp",
+      "w": 1600,
+      "h": 900
+    },
+    {
+      "src": "/opt/studies/sanskrit-art/14.webp",
+      "w": 1600,
+      "h": 900
+    },
+    {
+      "src": "/opt/studies/sanskrit-art/15.webp",
+      "w": 1600,
+      "h": 900
+    },
+    {
+      "src": "/opt/studies/sanskrit-art/16.webp",
+      "w": 1600,
+      "h": 900
+    }
+  ],
+  "body": [
+    {
+      "h": "About the project"
+    },
+    {
+      "p": "The title slide reads **एकीकृत-कला-परियोजना-कार्यम् आसामाधारितम्** (an integrated art project based on Assam), for **कक्षा : दशमी** (Class X), **विषय : संस्कृत** (subject: Sanskrit), at दिल्ली पब्लिक स्कूल जयपुर."
+    },
+    {
+      "p": "Every slide is in Sanskrit. The project is framed as a conversation (भव्यादेवांशयोः मध्ये वार्तालापम्) in which Bhavya describes visiting the Kamakhya and Umananda temples and the Pobitora sanctuary, and I describe the Manas sanctuary, a UNESCO World Heritage Site. The other team members then take over different topics."
+    },
+    {
+      "list": [
+        "**Facts about Assam:** capital Dispur, area 78,438 sq km, state language Assamese, the Bihu festival, the Sattriya dance and the one-horned rhinoceros as state animal.",
+        "**Description:** an eastern state of India with 33 districts, set along the Brahmaputra and Barak rivers.",
+        "**Music and dance:** Bihu, Bodo, Karbi and Mising songs; instruments such as the pepa, toka, gogona, bahi, bin and doba; dances including Bihu, Bagurumba, Bhortal, Sattriya and Naga dance.",
+        "**Food:** rice, fish, mutton and chicken dishes, bamboo used for utensils and pickles, and tea, with Assam producing 50% of India's tea.",
+        "**Arts and crafts:** traditional craftspeople known for silk and bamboo work.",
+        "**Kamakhya temple:** one of the 51 Shakti Peethas, on Nilachal hill in western Guwahati, with the Ambubachi Mela as its annual festival.",
+        "**Kaziranga National Park:** spread across Golaghat, Karbi Anglong and Nagaon districts, a World Heritage Site known for the one-horned rhinoceros."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+/* fast travel between pages: an ink panel with the destination, wiping away */
+.travel {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+}
+.travel-ink {
+  position: absolute;
+  inset: -2px;
+  background: #14110f;
+  /* a brushed trailing edge as it sweeps off to the right */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  animation: travel-wipe 1.45s cubic-bezier(0.7, 0, 0.2, 1) forwards;
+}
+.travel-card {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.6rem;
+  color: #f3ebdd;
+  text-align: center;
+  animation: travel-card 1.45s ease forwards;
+}
+.travel-sub {
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #e8b56a;
+}
+.travel-name {
+  margin: 0;
+  font-family: var(--font-display), serif;
+  font-size: clamp(2.4rem, 7vw, 4.8rem);
+  font-weight: 330;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.travel-bar {
+  display: block;
+  width: 9rem;
+  height: 2px;
+  margin-top: 0.6rem;
+  background: rgba(243, 235, 221, 0.15);
+  overflow: hidden;
+}
+.travel-bar i {
+  display: block;
+  height: 100%;
+  background: #c2402a;
+  transform-origin: 0 50%;
+  animation: travel-load 0.6s cubic-bezier(0.3, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes travel-wipe {
+  0%,
+  42% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(100% 0, 112% 0, 104% 100%, 100% 100%);
+  }
+}
+@keyframes travel-card {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  12%,
+  40% {
+    opacity: 1;
+    transform: none;
+  }
+  58%,
+  100% {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+}
+@keyframes travel-load {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}

@@ -1,0 +1,162 @@
+/* Akshaya Patra's water, drawn to scale */
+.ws {
+  margin: 0;
+  padding: clamp(1rem, 2.5vw, 2rem);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--bg) 70%, white);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 8%, transparent);
+}
+.ws svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.ws__band {
+  opacity: 0.92;
+}
+.ws__stage rect {
+  fill: var(--bg);
+  stroke: var(--ink);
+  stroke-width: 2.5;
+}
+.ws__tag {
+  font-family: var(--mono), monospace;
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  text-anchor: middle;
+  fill: var(--ink);
+}
+.ws__note {
+  font-family: var(--mono), monospace;
+  font-size: 14px;
+  fill: color-mix(in srgb, var(--ink) 62%, transparent);
+}
+.ws__big {
+  font-family: var(--font-display), serif;
+  font-size: 46px;
+  fill: var(--ink);
+}
+.ws__big--clean {
+  fill: #3f93c0;
+}
+.ws__big--reject {
+  fill: #b2482a;
+}
+.ws__mid {
+  font-family: var(--font-display), serif;
+  font-size: 30px;
+  fill: color-mix(in srgb, var(--ink) 70%, transparent);
+}
+.ws__unit {
+  font-size: 18px;
+  fill: color-mix(in srgb, var(--ink) 70%, transparent);
+}
+/* water running through each band */
+.ws__run {
+  stroke: rgba(255, 255, 255, 0.75);
+  stroke-dasharray: 2 26;
+  animation: ws-run 1.6s linear infinite;
+}
+.ws__run--reject {
+  stroke: rgba(255, 236, 225, 0.8);
+}
+.ws__run--lost {
+  stroke: rgba(255, 255, 255, 0.45);
+}
+@keyframes ws-run {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+figure.ws figcaption {
+  margin-top: 1rem;
+  max-width: 62ch;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* phone: one bar */
+.ws__narrow {
+  display: none;
+}
+@media (max-width: 700px) {
+  .ws__wide {
+    display: none !important;
+  }
+  .ws__narrow {
+    display: block;
+  }
+  .ws__narrow-in {
+    margin: 0 0 0.6rem;
+    font-size: 15px;
+  }
+  .ws__narrow-in b {
+    font-family: var(--font-display), serif;
+    font-size: 30px;
+    font-weight: 400;
+  }
+  .ws__bar {
+    display: flex;
+    height: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .ws__bar span {
+    background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.35) 0 2px, transparent 2px 18px);
+    background-size: 36px 100%;
+    animation: ws-bar 1.2s linear infinite;
+  }
+  @keyframes ws-bar {
+    to {
+      background-position: 36px 0;
+    }
+  }
+  .ws__legend {
+    display: grid;
+    gap: 0.45rem;
+    margin: 0.9rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 14px;
+  }
+  .ws__legend li::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 0.5rem;
+    border-radius: 3px;
+    background: currentColor;
+  }
+  .ws__legend b {
+    color: var(--ink);
+  }
+}
+.ws__bar .is-clean,
+.ws__legend .is-clean {
+  --c: #2f7aa0;
+}
+.ws__bar .is-reject,
+.ws__legend .is-reject {
+  --c: #b2482a;
+}
+.ws__bar .is-lost,
+.ws__legend .is-lost {
+  --c: #a99f94;
+}
+.ws__bar span {
+  background-color: var(--c);
+}
+.ws__legend li {
+  color: color-mix(in srgb, var(--ink) 75%, transparent);
+}
+.ws__legend li::before {
+  background: var(--c) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ws__run,
+  .ws__bar span {
+    animation: none;
+  }
+}

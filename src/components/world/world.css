@@ -1,0 +1,1835 @@
+/* ─────────────────────────────────────────────
+   Devansh's world: home page styles
+   ───────────────────────────────────────────── */
+
+.world {
+  transition: background 1.2s ease;
+  --ink: #14110f;
+  --ink-soft: #3a322b;
+  --paper: #f3ebdd;
+  --paper-deep: #e6d6bb;
+  /* a shade deeper than the brand vermilion so the small index numbers read (AA) */
+  --vermilion: #b23b27;
+  --gold: #e8b56a;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  color: var(--ink);
+  background:
+    radial-gradient(120% 90% at 55% 45%, #f8f0e1 0%, #efe1c8 55%, #e2cba6 100%);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* paper grain over everything */
+.world::after {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.world-canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.world-waiting {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  animation: waiting 1.2s ease-in-out infinite alternate;
+}
+@keyframes waiting {
+  from {
+    opacity: 0.35;
+  }
+}
+
+/* ── labels floating over each place: a small tag on a leader line ── */
+.world-label {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  padding: 0.28rem 0.55rem 0.3rem;
+  border-radius: 2px;
+  background: rgba(250, 245, 236, 0.9);
+  box-shadow: 0 1px 0 rgba(20, 17, 15, 0.08), 0 8px 20px -12px rgba(60, 40, 20, 0.5);
+  white-space: nowrap;
+  color: var(--ink);
+  transform: translateY(-14px);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.25s, color 0.25s, opacity 0.3s;
+  animation: label-in 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.world-label::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 1px;
+  height: 14px;
+  background: rgba(20, 17, 15, 0.45);
+}
+.world-label__index {
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  /* deeper still: the label's paper is a little grey (AA) */
+  color: #a93825;
+}
+.world-label__name {
+  font-family: var(--font-display), serif;
+  font-size: 15px;
+  line-height: 1;
+}
+.world-label.is-active {
+  background: var(--ink);
+  color: var(--paper);
+  transform: translateY(-20px);
+}
+.world-label.is-active::after {
+  height: 20px;
+  background: var(--ink);
+}
+.world-label.is-active .world-label__index {
+  color: #f0a58f;
+}
+.world-label.is-dim {
+  opacity: 0.2;
+}
+@keyframes label-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+/* ── top bar ── */
+.hud-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem clamp(1rem, 3vw, 2.25rem);
+  pointer-events: none;
+}
+.hud-top > * {
+  pointer-events: auto;
+}
+.hud-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.hanko {
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  background: var(--vermilion);
+  color: #fbeee3;
+  font-family: var(--font-display), serif;
+  font-size: 15px;
+  line-height: 0.82;
+  transform: rotate(-4deg);
+  box-shadow: inset 0 0 0 2px rgba(251, 238, 227, 0.35);
+}
+.hanko span:first-child {
+  margin-top: 3px;
+}
+.hud-brand__name {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.hud-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.75rem);
+  font-size: 13.5px;
+}
+.hud-nav > a {
+  position: relative;
+}
+.hud-nav > a:not(.hud-nav__cta)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s cubic-bezier(0.6, 0, 0.2, 1);
+}
+.hud-nav > a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.hud-nav__cta {
+  padding: 0.5rem 0.95rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  transition: background 0.25s;
+}
+.hud-nav__cta:hover {
+  background: var(--vermilion);
+}
+
+/* ── intro copy bottom-left ── */
+.hud-hero {
+  position: absolute;
+  left: clamp(1rem, 3vw, 2.25rem);
+  bottom: clamp(1.25rem, 4vh, 2.5rem);
+  z-index: 20;
+  max-width: min(34rem, 92vw);
+  transition: opacity 0.4s, transform 0.5s cubic-bezier(0.6, 0, 0.2, 1);
+}
+.hud-hero.is-hidden,
+.hud-places.is-hidden {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}
+.hud-kicker {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.6rem;
+}
+.hud-title {
+  font-family: var(--font-display), serif;
+  font-size: clamp(2.6rem, 5vw, 4.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  font-weight: 330;
+  white-space: nowrap;
+}
+.hud-title em {
+  font-style: italic;
+  color: var(--vermilion);
+}
+.hud-lede {
+  margin-top: 0.9rem;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 27rem;
+}
+
+/* ── places list bottom-right ── */
+.hud-places {
+  position: absolute;
+  right: clamp(1rem, 3vw, 2.25rem);
+  bottom: clamp(1.25rem, 4vh, 2.5rem);
+  z-index: 20;
+  width: 15.5rem;
+  padding: 0.9rem 0.6rem 0.5rem;
+  border-radius: 16px;
+  background: rgba(247, 240, 226, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(20, 17, 15, 0.1);
+  transition: opacity 0.4s, transform 0.5s cubic-bezier(0.6, 0, 0.2, 1);
+}
+.hud-places__head {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.45rem 0.55rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.hud-places__count {
+  color: var(--vermilion);
+}
+.hud-places button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.42rem 0.45rem;
+  border-radius: 8px;
+  font-size: 13.5px;
+  text-align: left;
+  transition: background 0.2s, padding 0.25s;
+}
+.hud-places button:hover,
+.hud-places button:focus-visible {
+  background: rgba(20, 17, 15, 0.06);
+  padding-left: 0.7rem;
+}
+.hud-places__idx {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  color: var(--ink-soft);
+}
+.hud-places button.is-seen .hud-places__idx {
+  color: var(--vermilion);
+}
+
+/* ── place card ── */
+.place-card {
+  position: absolute;
+  z-index: 35;
+  right: clamp(1rem, 3vw, 2.25rem);
+  top: 50%;
+  width: min(25rem, calc(100vw - 2rem));
+  transform: translateY(-50%);
+  padding: 1.4rem 1.4rem 1.2rem;
+  border-radius: 20px;
+  background: rgba(250, 245, 236, 0.92);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(20, 17, 15, 0.1);
+  box-shadow: 0 30px 60px -30px rgba(60, 40, 20, 0.45);
+  animation: card-in 0.6s cubic-bezier(0.2, 0.9, 0.2, 1) both;
+}
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translate(24px, -50%);
+  }
+}
+.place-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.place-card__idx {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  /* sits on the photo */
+  color: #ffd08a;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+.place-card__close {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: #f3ebdd;
+  background: rgba(20, 17, 15, 0.35);
+  border: 1px solid rgba(243, 235, 221, 0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 0.2s, transform 0.3s;
+}
+.place-card__close:hover {
+  background: rgba(20, 17, 15, 0.55);
+  transform: rotate(90deg);
+}
+.place-card__culture {
+  /* below the clear part of the photo */
+  margin-top: 110px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.place-card__name {
+  font-family: var(--font-display), serif;
+  font-size: 2.4rem;
+  line-height: 1;
+  margin-top: 0.3rem;
+}
+.place-card__story {
+  margin-top: 0.8rem;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.place-card__outfit {
+  margin-top: 0.7rem;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  font-style: italic;
+  font-family: var(--font-display), serif;
+  font-size: 15px;
+}
+.place-card__outfit span {
+  font-style: normal;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--vermilion);
+  margin-right: 0.35rem;
+}
+.place-card__facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-top: 1.1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(20, 17, 15, 0.2);
+}
+.place-card__facts dt {
+  font-family: var(--font-display), serif;
+  font-size: 1.45rem;
+  line-height: 1.05;
+}
+.place-card__facts dd {
+  margin-top: 0.2rem;
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+.place-card__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.2rem;
+}
+.place-card__enter {
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 13.5px;
+  transition: background 0.25s;
+}
+.place-card__enter:hover {
+  background: var(--vermilion);
+}
+.place-card__step {
+  display: flex;
+  gap: 0.25rem;
+}
+.place-card__step button {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(20, 17, 15, 0.15);
+  transition: background 0.2s;
+}
+.place-card__step button:hover {
+  background: rgba(20, 17, 15, 0.07);
+}
+
+/* ── the opening ── */
+.intro {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+.intro-backing {
+  position: absolute;
+  inset: 0;
+  background: #15110e;
+}
+.intro-half {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+.intro-half--top {
+  clip-path: polygon(0 0, 100% 0, 100% 30.6%, 0 70.6%);
+}
+.intro-half--bottom {
+  clip-path: polygon(0 70%, 100% 30%, 100% 100%, 0 100%);
+}
+.intro-art {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: radial-gradient(90% 80% at 30% 60%, #221b16 0%, #110e0c 70%);
+}
+.intro-art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.intro-meta {
+  position: absolute;
+  top: 1.5rem;
+  left: clamp(1rem, 3vw, 2.25rem);
+  right: clamp(1rem, 3vw, 2.25rem);
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: rgba(243, 235, 221, 0.6);
+}
+.intro-rule {
+  position: absolute;
+  right: clamp(1.25rem, 7vw, 8rem);
+  top: 50%;
+  transform: translateY(-60%);
+  text-align: right;
+  color: #f3ebdd;
+}
+.intro-line {
+  font-family: var(--font-mincho), 'Yu Mincho', serif;
+  font-weight: 500;
+  font-size: clamp(2.1rem, 5.4vw, 4.8rem);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+}
+.intro-line {
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+.intro-word {
+  display: inline-block;
+}
+.intro-word.is-accent {
+  font-style: italic;
+  color: #e46a4c;
+}
+.intro-sig {
+  margin-top: 1rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(243, 235, 221, 0.55);
+}
+.intro-slash-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  clip-path: inset(0% 100% 0% 0%);
+}
+.intro-slash {
+  stroke: #fff4e6;
+  vector-effect: non-scaling-stroke;
+  stroke-width: 2.5px;
+  filter: drop-shadow(0 0 6px rgba(255, 210, 160, 0.9)) drop-shadow(0 0 18px rgba(232, 106, 76, 0.8));
+}
+.intro-flash {
+  position: absolute;
+  inset: 0;
+  background: #fff4e6;
+  opacity: 0;
+}
+.intro-skip {
+  position: absolute;
+  z-index: 55;
+  right: clamp(1rem, 3vw, 2.25rem);
+  bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(243, 235, 221, 0.25);
+  color: rgba(243, 235, 221, 0.8);
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: background 0.2s, color 0.2s;
+}
+.intro-skip span {
+  padding: 0.05rem 0.35rem;
+  border-radius: 4px;
+  border: 1px solid rgba(243, 235, 221, 0.3);
+  font-size: 9.5px;
+}
+.intro-skip:hover {
+  background: rgba(243, 235, 221, 0.1);
+  color: #fff;
+}
+
+/* the slash leaves a section line behind, the way a drawing marks a cut */
+.section-mark {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0;
+}
+.section-mark line {
+  stroke: var(--vermilion);
+  stroke-width: 1.5px;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 18 6 3 6;
+}
+.section-tag {
+  display: none;
+}
+
+/* short, narrow windows: keep the name and kicker, let the island have the room */
+@media (max-width: 760px) and (max-height: 700px) {
+  .hud-lede {
+    display: none;
+  }
+  .hud-places__head {
+    display: none;
+  }
+}
+
+/* the interface waits, invisible, until the world has finished building */
+.world:not([data-phase='ready']) .hud-reveal {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── phones and narrow windows: three stacked bands, so text never sits on the island ── */
+@media (max-width: 760px) {
+  .world {
+    display: flex;
+    flex-direction: column;
+    padding-top: 4.4rem;
+  }
+  .world-canvas {
+    position: relative;
+    inset: auto;
+    flex: 1 1 auto;
+    min-height: 0;
+    order: 2;
+  }
+  .hud-nav > a:not(.hud-nav__cta) {
+    display: none;
+  }
+  .hud-hero {
+    position: relative;
+    order: 1;
+    left: auto;
+    bottom: auto;
+    margin: 0 1rem;
+    max-width: none;
+  }
+  .hud-kicker {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+  .hud-title {
+    font-size: clamp(2.3rem, 11vw, 3rem);
+  }
+  .hud-lede {
+    margin-top: 0.5rem;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+  .hud-places {
+    position: relative;
+    order: 3;
+    right: auto;
+    bottom: auto;
+    width: auto;
+    margin: 0 1rem 1rem;
+    padding: 0.7rem 0.5rem 0.4rem;
+  }
+  .hud-places ol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .hud-places button {
+    padding: 0.32rem 0.4rem;
+    font-size: 13px;
+  }
+  .hud-lede {
+    max-width: none;
+  }
+  .hud-hero,
+  .hud-places {
+    min-width: 0;
+    width: auto;
+    align-self: stretch;
+  }
+  /* a place is open: the world takes the full height, the card becomes a bottom sheet */
+  .world[data-focus] .hud-hero,
+  .world[data-focus] .hud-places {
+    display: none;
+  }
+  .place-card {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    width: auto;
+    max-height: 52vh;
+    overflow-y: auto;
+    padding: 1rem 1.1rem 1rem;
+    border-radius: 16px;
+  }
+  .place-card__name {
+    font-size: 1.9rem;
+  }
+  .place-card__story {
+    font-size: 13.5px;
+    margin-top: 0.5rem;
+  }
+  .place-card__facts {
+    margin-top: 0.8rem;
+    padding-top: 0.7rem;
+  }
+  .place-card__facts dt {
+    font-size: 1.2rem;
+  }
+  .place-card__actions {
+    margin-top: 0.9rem;
+  }
+  .world-label__name {
+    display: none;
+  }
+  .world-label {
+    padding: 0.2rem 0.4rem;
+  }
+  .place-card {
+    top: auto;
+    bottom: 1rem;
+    right: 1rem;
+    transform: none;
+    animation-name: card-up;
+  }
+  @keyframes card-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+  }
+  .intro-rule {
+    top: 12vh;
+    right: 1.25rem;
+    transform: none;
+  }
+  .intro-line {
+    font-size: 2.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .world-label {
+    animation: none;
+  }
+}
+
+
+/* ── the sky keeps Pilani time ── */
+.world[data-sky='dawn'] {
+  /* a soft apricot blush over the paper, not pink: vermilion still reads on it */
+  background: radial-gradient(120% 90% at 55% 45%, #fbf1e9 0%, #f6e0d3 50%, #ebcab8 100%);
+}
+.world[data-sky='golden'] {
+  /* honey, kept light at the edges so red text and the panels never sink into it */
+  background: radial-gradient(120% 90% at 60% 45%, #fff1db 0%, #f9dcb4 50%, #edbf8f 100%);
+}
+.world[data-sky='night'] {
+  background: radial-gradient(120% 90% at 55% 50%, #2a2f55 0%, #171a33 55%, #0b0c1a 100%);
+}
+/* stars, twinkling slowly, only at night */
+.world[data-sky='night']::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1.2px 1.2px at 12% 18%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 28% 8%, #fff 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 43% 22%, #ffeccc 50%, transparent 51%),
+    radial-gradient(1px 1px at 61% 12%, #fff 50%, transparent 51%),
+    radial-gradient(1.6px 1.6px at 77% 26%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 88% 9%, #dfe6ff 50%, transparent 51%),
+    radial-gradient(1.2px 1.2px at 94% 38%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 6% 44%, #fff 50%, transparent 51%),
+    radial-gradient(1.3px 1.3px at 34% 40%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 70% 46%, #ffeccc 50%, transparent 51%),
+    radial-gradient(1.1px 1.1px at 52% 4%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 18% 62%, #dfe6ff 50%, transparent 51%),
+    radial-gradient(1.2px 1.2px at 84% 64%, #fff 50%, transparent 51%);
+  animation: twinkle 5s ease-in-out infinite alternate;
+}
+@keyframes twinkle {
+  from {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* words that sit straight on the sky turn to moonlight; the paper cards stay paper */
+.world[data-sky='night'] .hud-hero,
+.world[data-sky='night'] .hud-top,
+.world[data-sky='night'] .world-waiting {
+  --ink: #f3ebdd;
+  --ink-soft: #c9c0d6;
+  --paper: #171a33;
+  color: var(--ink);
+}
+.world[data-sky='night'] .hud-title em {
+  color: #ff8a6b;
+}
+@media (prefers-reduced-motion: reduce) {
+  .world[data-sky='night']::before {
+    animation: none;
+  }
+}
+
+/* ── the guide's speech bubble, game-dialogue style ── */
+.guide-say {
+  position: relative;
+  transform: translate(-50%, -100%) translateY(-4px) scale(0.92);
+  transform-origin: 50% 100%;
+  width: max-content;
+  max-width: min(13.5rem, 56vw);
+  padding: 0.42rem 0.65rem 0.48rem;
+  background: rgba(251, 247, 240, 0.97);
+  color: #14110f;
+  border: 1px solid rgba(20, 17, 15, 0.14);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px -12px rgba(20, 17, 15, 0.45);
+  opacity: 0;
+  transition:
+    opacity 0.35s ease,
+    transform 0.45s cubic-bezier(0.2, 1.3, 0.3, 1);
+}
+.guide-say.is-open {
+  opacity: 1;
+  transform: translate(-50%, -100%) translateY(-8px) scale(1);
+}
+.guide-say::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 11px;
+  height: 11px;
+  background: inherit;
+  border-right: 1px solid rgba(20, 17, 15, 0.14);
+  border-bottom: 1px solid rgba(20, 17, 15, 0.14);
+  transform: translateX(-50%) rotate(45deg);
+}
+.guide-say__who {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 8.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vermilion, #c2402a);
+}
+.guide-say__text {
+  display: block;
+  font-family: var(--font-display), serif;
+  font-size: 13px;
+  line-height: 1.28;
+}
+/* the untyped rest holds the bubble's final size so it doesn't jump */
+.guide-say__text i {
+  font-style: normal;
+  visibility: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .guide-say {
+    transition: opacity 0.2s;
+  }
+}
+
+/* ── the survey sheet behind the island ── */
+.survey {
+  position: absolute;
+  inset: -12px;
+  pointer-events: none;
+  color: rgba(74, 52, 34, 0.42);
+  font-family: var(--font-mono), monospace;
+  will-change: transform;
+}
+.world[data-sky='night'] .survey {
+  color: rgba(226, 220, 240, 0.4);
+}
+.survey__lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* the sheet fades out where the hero copy sits so the words stay clean */
+  mask-image: radial-gradient(130% 110% at 70% 45%, #000 45%, rgba(0, 0, 0, 0.35) 80%);
+  -webkit-mask-image: radial-gradient(130% 110% at 70% 45%, #000 45%, rgba(0, 0, 0, 0.35) 80%);
+}
+.survey__north {
+  position: absolute;
+  right: 4.5%;
+  top: 17%;
+  width: 26px;
+}
+.survey__north text,
+.survey__scale text {
+  fill: currentColor;
+  font-size: 9px;
+  font-family: var(--font-mono), monospace;
+}
+.survey__scale {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  width: 150px;
+  transform: translateX(-50%);
+}
+.survey__bm {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+.survey__bm i {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 8px solid currentColor;
+}
+.survey__title {
+  position: absolute;
+  left: calc(3.2% + 120px);
+  bottom: 22px;
+  display: grid;
+  gap: 2px;
+  padding: 6px 10px;
+  border: 1px solid currentColor;
+  font-size: 8.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+@media (max-width: 760px) {
+  .survey__north,
+  .survey__scale,
+  .survey__bm,
+  .survey__title {
+    display: none;
+  }
+}
+
+/* keyboard hint under the places list (pointer devices only) */
+.hud-places__keys {
+  margin: 0.7rem 0 0;
+  padding-top: 0.6rem;
+  border-top: 1px solid rgba(20, 17, 15, 0.08);
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+}
+.hud-places__keys kbd {
+  display: inline-block;
+  min-width: 1.5em;
+  padding: 0.05em 0.35em;
+  border: 1px solid rgba(20, 17, 15, 0.2);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 10px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.5);
+}
+@media (hover: none), (max-width: 760px) {
+  .hud-places__keys {
+    display: none;
+  }
+}
+
+/* ── highlights: one headline result at a time, each a doorway to its place ── */
+.highlights {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  margin-top: 1.1rem;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--ink, #2a1b10) 14%, transparent);
+  background: color-mix(in srgb, var(--paper, #f6efe3) 72%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  overflow: hidden;
+}
+.highlights__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.75rem;
+  padding: 0.6rem 0.95rem 0.7rem;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  animation: highlight-in 0.55s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+.highlights__index {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--vermilion);
+}
+.highlights__fact {
+  font-family: var(--font-display), serif;
+  font-size: 17px;
+  line-height: 1.25;
+}
+.highlights__place {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  transition: color 0.2s;
+}
+.highlights__item:hover .highlights__place {
+  color: var(--vermilion);
+}
+.highlights__track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: color-mix(in srgb, var(--ink, #2a1b10) 8%, transparent);
+}
+.highlights__track span {
+  display: block;
+  height: 100%;
+  background: var(--vermilion);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+@keyframes highlight-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(3px);
+  }
+}
+.world[data-sky='night'] .highlights {
+  background: rgba(23, 26, 51, 0.6);
+  border-color: rgba(243, 235, 221, 0.18);
+}
+/* at night the small vermilion numbers go coral, as the labels' do, to read on the dark (AA) */
+.world[data-sky='night'] .highlights__index,
+.world[data-sky='night'] .hud-places__count {
+  color: #f0a58f;
+}
+
+/* ── reach me: the title block of the drawing, under the intro ── */
+.contact-block {
+  display: grid;
+  margin-top: 0.9rem;
+  max-width: 34rem;
+  font-style: normal;
+  border: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--paper) 62%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  overflow: hidden;
+}
+.contact-block__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.9rem;
+  padding: 0.5rem 0.85rem;
+}
+.contact-block__row + .contact-block__row {
+  border-top: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+}
+.contact-block__label {
+  min-width: 5.6rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.contact-block__mail {
+  font-size: 14.5px;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--vermilion) 55%, transparent);
+  transition: border-color 0.2s, color 0.2s;
+}
+.contact-block__mail:hover {
+  color: var(--vermilion);
+  border-color: var(--vermilion);
+}
+.contact-block__copy {
+  margin-left: auto;
+  padding: 0.22rem 0.6rem;
+  border: 1px solid color-mix(in srgb, var(--ink) 25%, transparent);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.contact-block__copy:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+.contact-block__links a {
+  font-size: 13px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.contact-block__links a:hover {
+  color: var(--vermilion);
+}
+.world[data-sky='night'] .contact-block {
+  background: rgba(23, 26, 51, 0.6);
+  border-color: rgba(243, 235, 221, 0.2);
+}
+.world[data-sky='night'] .contact-block__row + .contact-block__row {
+  border-top-color: rgba(243, 235, 221, 0.12);
+}
+.world[data-sky='night'] .contact-block__mail,
+.world[data-sky='night'] .contact-block__copy {
+  color: #f3ebdd;
+}
+.world[data-sky='night'] .contact-block__label,
+.world[data-sky='night'] .contact-block__links a {
+  color: rgba(243, 235, 221, 0.72);
+}
+.world[data-sky='night'] .contact-block__copy {
+  border-color: rgba(243, 235, 221, 0.3);
+}
+.world[data-sky='night'] .contact-block__copy:hover {
+  background: #f3ebdd;
+  color: #171a33;
+}
+/* short screens: the lede gives way so the contact block still fits */
+@media (min-width: 761px) and (max-height: 760px) {
+  .hud-lede {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .contact-block {
+    margin-top: 0.6rem;
+  }
+  .contact-block__row {
+    padding: 0.45rem 0.7rem;
+    gap: 0.3rem 0.75rem;
+  }
+  .contact-block__label {
+    display: none;
+  }
+  .contact-block__mail {
+    font-size: 13px;
+  }
+  .contact-block__copy {
+    padding: 0.55rem 0.75rem;
+  }
+  .contact-block__links a {
+    padding-block: 0.35rem;
+    font-size: 12.5px;
+  }
+}
+
+/* ── E: the place card is a full photo card; the words sit on frosted paper below ── */
+.place-card {
+  overflow: hidden;
+}
+.place-card > :not(.place-card__photo) {
+  position: relative;
+  z-index: 1;
+}
+.place-card__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: #0d0b0a;
+}
+.place-card__photo-img {
+  position: absolute;
+  inset: -6%;
+  background-size: cover;
+  background-position: center;
+  animation: card-photo-drift 20s ease-in-out infinite alternate;
+}
+.place-card__photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* measured from the top in px, not %, so the words always sit on frosted paper
+     however tall the card is: clear photo for the top ~100px, paper from ~150px down */
+  background: linear-gradient(
+    180deg,
+    rgba(10, 8, 6, 0.22) 0,
+    rgba(10, 8, 6, 0) 70px,
+    rgba(247, 240, 226, 0) 92px,
+    rgba(247, 240, 226, 0.9) 150px,
+    rgba(247, 240, 226, 0.95) 100%
+  );
+}
+@keyframes card-photo-drift {
+  from {
+    scale: 1.02;
+  }
+  to {
+    scale: 1.09;
+  }
+}
+
+/* ── D: the old oak the island floats under (OakTree.tsx) ── */
+.oak {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  --ox: 85%;
+  --oy: 25%;
+  --px: 0;
+  --py: 0;
+}
+.oak__trunk,
+.oak__crown,
+.oak__sway,
+.oak__gust,
+.oak__canopy {
+  position: absolute;
+  inset: 0;
+}
+.oak__trunk,
+.oak__canopy {
+  background: right top / cover no-repeat;
+  transition: filter 1.2s ease, opacity 1.2s ease;
+}
+.oak__trunk {
+  background-image: url(/opt/world/oak-trunk-md.webp);
+  transform: translate(calc(var(--px) * -4px), calc(var(--py) * -3px));
+}
+.oak__canopy {
+  background-image: url(/opt/world/oak-canopy-md-v2.webp);
+  /* drawn at the trunk's scale (--s, from OakTree). The image carries 220px of extra
+     foliage above the painting and 60px to its right; the layer reaches past the top
+     and right of the screen to hold it, so a swaying crown never opens a gap */
+  top: calc(-220px * var(--s, 1));
+  right: calc(-60px * var(--s, 1));
+  background-size: calc(1912px * var(--s, 1)) auto;
+  background-position: right top;
+}
+@media (min-width: 1600px) {
+  .oak__trunk {
+    background-image: url(/opt/world/oak-trunk.webp);
+  }
+  .oak__canopy {
+    background-image: url(/opt/world/oak-canopy-v2.webp);
+  }
+}
+/* the crown leans further than the trunk as the cursor moves: a little depth */
+.oak__crown {
+  transform: translate(calc(var(--px) * -12px), min(0px, calc(var(--py) * -7px)));
+}
+/* the crown sways about the fork, so the far leaves travel furthest */
+.oak__sway,
+.oak__gust {
+  transform-origin: var(--ox) var(--oy);
+  will-change: transform;
+}
+.oak__sway {
+  animation: oak-sway 7.5s ease-in-out infinite alternate;
+}
+@keyframes oak-sway {
+  0% {
+    transform: rotate(-0.45deg) translateY(0);
+  }
+  45% {
+    transform: rotate(0.3deg) translateY(-1px);
+  }
+  100% {
+    transform: rotate(0.65deg) translateY(1px);
+  }
+}
+.oak.is-gust .oak__gust {
+  animation: oak-gust 3s cubic-bezier(0.3, 0.6, 0.3, 1) both;
+}
+@keyframes oak-gust {
+  0% {
+    transform: rotate(0);
+  }
+  18% {
+    transform: rotate(1.6deg) skewX(-0.6deg);
+  }
+  40% {
+    transform: rotate(-0.7deg);
+  }
+  62% {
+    transform: rotate(0.6deg);
+  }
+  82% {
+    transform: rotate(-0.2deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+/* sunlight flickering through the leaves */
+.oak__light i {
+  position: absolute;
+  width: 26vw;
+  height: 22vh;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 236, 190, 0.55), transparent);
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  animation: oak-fleck 13s ease-in-out infinite;
+}
+.oak__light i:nth-child(1) {
+  right: 8vw;
+  top: 2vh;
+}
+.oak__light i:nth-child(2) {
+  right: 30vw;
+  top: 6vh;
+  animation-duration: 17s;
+  animation-delay: -6s;
+}
+.oak__light i:nth-child(3) {
+  right: 2vw;
+  top: 26vh;
+  animation-duration: 15s;
+  animation-delay: -11s;
+}
+@keyframes oak-fleck {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.9);
+  }
+  35% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 0.4;
+    transform: translate(-4vw, 2vh) scale(1.1);
+  }
+  75% {
+    opacity: 0.9;
+  }
+}
+/* the sky's light falls on the painting */
+.world[data-sky='golden'] .oak__trunk,
+.world[data-sky='golden'] .oak__canopy {
+  filter: sepia(0.2) saturate(1.1);
+}
+/* night: the oak is moonlit, not blacked out: dimmer and cooler, still clearly a tree */
+.world[data-sky='night'] .oak__trunk,
+.world[data-sky='night'] .oak__canopy {
+  filter: brightness(0.62) saturate(0.55) contrast(1.08) hue-rotate(-12deg);
+}
+.world[data-sky='night'] .oak__light {
+  display: none;
+}
+/* leaves: a few drift down all the time; a gust shakes more loose */
+.oak__leaves i {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  background: url(/opt/world/leaf-a.webp) center / contain no-repeat;
+  opacity: 0;
+}
+.oak__leaves i:nth-child(even) {
+  background-image: url(/opt/world/leaf-b.webp);
+}
+.oak__leaves i.is-drift {
+  animation: oak-leaf linear infinite;
+}
+.oak__leaves i:nth-child(1) {
+  right: 22vw;
+  top: 14vh;
+  animation-duration: 15s;
+}
+.oak__leaves i:nth-child(2) {
+  right: 12vw;
+  top: 26vh;
+  animation-duration: 19s;
+  animation-delay: 6s;
+}
+.oak__leaves i:nth-child(3) {
+  right: 30vw;
+  top: 10vh;
+  animation-duration: 23s;
+  animation-delay: 12s;
+}
+.oak__leaves i:nth-child(4) {
+  right: 8vw;
+  top: 18vh;
+  animation-duration: 17s;
+  animation-delay: 17s;
+}
+.oak__leaves i:nth-child(5) {
+  right: 18vw;
+  top: 8vh;
+}
+.oak__leaves i:nth-child(6) {
+  right: 36vw;
+  top: 4vh;
+  width: 26px;
+  height: 26px;
+}
+.oak__leaves i:nth-child(7) {
+  right: 26vw;
+  top: 20vh;
+}
+.oak__leaves i:nth-child(8) {
+  right: 44vw;
+  top: 6vh;
+  width: 28px;
+  height: 28px;
+}
+.oak.is-gust .oak__leaves i.is-shaken {
+  animation: oak-shaken 4.5s cubic-bezier(0.3, 0.2, 0.5, 1) both;
+}
+.oak.is-gust .oak__leaves i:nth-child(6) {
+  animation-delay: 0.25s;
+}
+.oak.is-gust .oak__leaves i:nth-child(7) {
+  animation-delay: 0.5s;
+}
+.oak.is-gust .oak__leaves i:nth-child(8) {
+  animation-delay: 0.15s;
+}
+.world[data-sky='night'] .oak__leaves i {
+  filter: brightness(0.45) saturate(0.5);
+}
+@keyframes oak-leaf {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  8% {
+    opacity: 1;
+  }
+  30% {
+    transform: translate(-60px, 150px) rotate(70deg);
+  }
+  60% {
+    transform: translate(-150px, 330px) rotate(190deg);
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-240px, 560px) rotate(300deg);
+  }
+}
+/* blown sideways first, then settling down */
+@keyframes oak-shaken {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  6% {
+    opacity: 1;
+  }
+  35% {
+    transform: translate(-220px, 90px) rotate(160deg);
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-360px, 420px) rotate(320deg);
+  }
+}
+
+@media (max-width: 760px) {
+  /* phones: just the canopy over the top corner; the trunk stays off-screen, clear of the words */
+  .oak__trunk,
+  .oak__light,
+  .oak__leaves {
+    display: none;
+  }
+  .oak__canopy {
+    inset: 0;
+    background-image: url(/opt/world/oak-sm.webp);
+    background-size: auto 30%;
+    background-position: right -34vw top 0;
+    opacity: 0.4;
+  }
+  .oak__sway,
+  .oak__gust {
+    transform-origin: 100% 0;
+  }
+  .place-card__culture {
+    margin-top: 76px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .oak__sway,
+  .oak.is-gust .oak__gust,
+  .oak__light i,
+  .oak__leaves i,
+  .place-card__photo-img {
+    animation: none;
+  }
+  .oak__leaves,
+  .oak__light {
+    display: none;
+  }
+}
+/* the card always opens below the header and never runs off the screen */
+@media (min-width: 761px) {
+  .place-card {
+    top: calc(50% + 2.25rem);
+    max-height: calc(100vh - 7.5rem);
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+}
+/* laptop heights (including 1920 × 1080 at 125% scaling, ~700px tall): the whole card
+   fits without scrolling. Tighter type, and the story keeps to four lines; the full
+   story is one click away on the place's page. */
+@media (min-width: 761px) and (max-height: 820px) {
+  .place-card {
+    padding: 1.1rem 1.25rem 1rem;
+  }
+  .place-card__culture {
+    margin-top: 64px;
+  }
+  .place-card__name {
+    font-size: 2.05rem;
+  }
+  .place-card__story {
+    margin-top: 0.55rem;
+    font-size: 13.5px;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+  }
+  .place-card__outfit {
+    margin-top: 0.5rem;
+    font-size: 14px;
+  }
+  .place-card__facts {
+    margin-top: 0.75rem;
+    padding-top: 0.7rem;
+  }
+  .place-card__facts dt {
+    font-size: 1.25rem;
+  }
+  .place-card__actions {
+    margin-top: 0.85rem;
+  }
+}
+@media (min-width: 761px) and (max-height: 640px) {
+  .place-card__story {
+    -webkit-line-clamp: 3;
+  }
+  .place-card__outfit {
+    display: none;
+  }
+}
+
+/* the header sits over the oak's canopy: a frosted pill keeps the links readable,
+   and the name gets a soft paper halo (both follow the sky through --paper) */
+@media (min-width: 761px) {
+  .hud-nav {
+    padding: 0.3rem 0.35rem 0.3rem 1.1rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--paper) 72%, transparent);
+    border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+.hud-brand__name {
+  /* a tighter halo too: the soft one alone left the name hard to read over the leaves */
+  text-shadow: 0 0 2px var(--paper), 0 0 4px var(--paper), 0 0 10px var(--paper);
+}
+/* phones: the card's words start higher, so the paper does too */
+@media (max-width: 760px) {
+  .place-card__photo::after {
+    background: linear-gradient(180deg, rgba(10, 8, 6, 0.22) 0, rgba(10, 8, 6, 0) 50px, rgba(247, 240, 226, 0) 66px, rgba(247, 240, 226, 0.9) 112px, rgba(247, 240, 226, 0.95) 100%);
+  }
+}
+
+/* ── night on the oak: a moon behind the crown, its light on the leaves, fireflies ── */
+.oak__moon,
+.oak__moonlight,
+.oak__fireflies {
+  display: none;
+}
+.world[data-sky='night'] .oak__moon,
+.world[data-sky='night'] .oak__moonlight,
+.world[data-sky='night'] .oak__fireflies {
+  display: block;
+}
+.oak__moon {
+  /* in a gap in the crown, clear of the header */
+  position: absolute;
+  right: 20%;
+  top: 15%;
+  width: clamp(70px, 6.5vw, 120px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 36%, #fffaf0 0%, #f1ead6 55%, #d9d2c0 100%);
+  box-shadow: 0 0 40px 12px rgba(214, 224, 255, 0.35), 0 0 140px 60px rgba(160, 180, 255, 0.18);
+  transform: translate(calc(var(--px) * -2px), calc(var(--py) * -2px));
+}
+/* moonlight catching the crown from behind: a cool wash, brightest near the moon */
+.oak__moonlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 46% at 78% 20%, rgba(200, 214, 255, 0.5), transparent 70%),
+    radial-gradient(60% 40% at 96% 70%, rgba(150, 170, 240, 0.18), transparent 70%);
+  mix-blend-mode: screen;
+}
+.oak__fireflies i {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff3b0;
+  box-shadow: 0 0 6px 2px rgba(255, 236, 140, 0.85), 0 0 18px 6px rgba(255, 220, 110, 0.35);
+  opacity: 0;
+  animation: firefly-drift 14s ease-in-out infinite, firefly-blink 3.2s ease-in-out infinite;
+}
+.oak__fireflies i:nth-child(1) { right: 6vw; top: 30vh; animation-duration: 16s, 2.8s; }
+.oak__fireflies i:nth-child(2) { right: 12vw; top: 44vh; animation-duration: 13s, 3.6s; animation-delay: -4s, -1s; }
+.oak__fireflies i:nth-child(3) { right: 20vw; top: 22vh; animation-duration: 18s, 3.1s; animation-delay: -8s, -2s; }
+.oak__fireflies i:nth-child(4) { right: 3vw; top: 58vh; animation-duration: 15s, 2.5s; animation-delay: -2s, -0.5s; }
+.oak__fireflies i:nth-child(5) { right: 9vw; top: 72vh; animation-duration: 17s, 3.4s; animation-delay: -11s, -1.6s; }
+.oak__fireflies i:nth-child(6) { right: 16vw; top: 84vh; animation-duration: 12s, 2.9s; animation-delay: -6s, -2.4s; }
+.oak__fireflies i:nth-child(7) { right: 28vw; top: 16vh; animation-duration: 19s, 3.8s; animation-delay: -3s, -0.8s; }
+.oak__fireflies i:nth-child(8) { right: 24vw; top: 88vh; animation-duration: 14s, 2.6s; animation-delay: -9s, -1.2s; }
+.oak__fireflies i:nth-child(9) { right: 34vw; top: 10vh; animation-duration: 16s, 3.3s; animation-delay: -13s, -2.8s; }
+.oak__fireflies i:nth-child(10) { right: 1.5vw; top: 14vh; animation-duration: 13s, 2.7s; animation-delay: -7s, -0.3s; }
+.oak__fireflies i:nth-child(11) { right: 40vw; top: 20vh; width: 3px; height: 3px; animation-duration: 20s, 3.9s; animation-delay: -5s, -1.9s; }
+.oak__fireflies i:nth-child(12) { right: 14vw; top: 64vh; width: 3px; height: 3px; animation-duration: 15s, 3s; animation-delay: -10s, -2.1s; }
+@keyframes firefly-drift {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-28px, -18px); }
+  50% { transform: translate(-6px, -40px); }
+  75% { transform: translate(22px, -14px); }
+}
+@keyframes firefly-blink {
+  0%, 100% { opacity: 0; }
+  30%, 55% { opacity: 1; }
+  75% { opacity: 0.2; }
+}
+@media (max-width: 760px) {
+  .world[data-sky='night'] .oak__moon,
+  .world[data-sky='night'] .oak__fireflies {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .oak__fireflies i {
+    animation: none;
+    opacity: 0.7;
+  }
+}
+
+/* night: the places list is dark glass like the other panels, not a bright paper card */
+.world[data-sky='night'] .hud-places {
+  --ink: #f3ebdd;
+  --ink-soft: #c9c0d6;
+  color: var(--ink);
+  background: rgba(23, 26, 51, 0.62);
+  border-color: rgba(243, 235, 221, 0.16);
+}
+.world[data-sky='night'] .hud-places button {
+  color: var(--ink);
+}
+.world[data-sky='night'] .hud-places button:hover,
+.world[data-sky='night'] .hud-places button:focus-visible {
+  background: rgba(243, 235, 221, 0.08);
+}
+.world[data-sky='night'] .hud-places__keys {
+  border-top-color: rgba(243, 235, 221, 0.12);
+}
+.world[data-sky='night'] .hud-places__keys kbd {
+  background: rgba(243, 235, 221, 0.08);
+  border-color: rgba(243, 235, 221, 0.2);
+  color: var(--ink);
+}
+
+/* the name arrives on petals (PetalName): hidden until they've formed it */
+.hud-title {
+  transition: opacity 0.6s ease;
+}
+.hud-title:not(.is-named) {
+  opacity: 0;
+}
+.petal-name {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 45;
+  pointer-events: none;
+}
+
+/* ── the Places panel: each place with one plain line, and a postcard beside the list ── */
+.hud-places {
+  z-index: 30;
+}
+.hud-places button {
+  align-items: flex-start;
+  padding-block: 0.36rem;
+}
+.hud-places button .hud-places__idx {
+  padding-top: 0.15rem;
+}
+.hud-places__label {
+  display: grid;
+  gap: 1px;
+  font-size: 13px;
+  line-height: 1.2;
+}
+.hud-places__label small {
+  font-size: 10.5px;
+  color: var(--ink-soft);
+}
+/* the postcard: a small card that is all photo, with the gist over its lower half; it always
+   sits at the bottom, beside the foot of the list, whichever place you point at */
+.hud-postcard {
+  position: absolute;
+  right: calc(100% + 16px);
+  width: 11rem;
+  aspect-ratio: 4 / 5;
+  bottom: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #1d1612;
+  background-size: cover;
+  background-position: center;
+  color: #fbf7ef;
+  box-shadow: 0 24px 50px -20px rgba(20, 12, 6, 0.6);
+  transform: rotate(-1.5deg);
+  transform-origin: right bottom;
+  pointer-events: none;
+  animation: postcard-in 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes postcard-in {
+  from {
+    opacity: 0;
+    transform: translate(12px, 8px) rotate(1deg) scale(0.95);
+  }
+}
+.hud-postcard__stamp {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 30px;
+  background: #fbf7ef;
+  outline: 2px dashed rgba(194, 64, 42, 0.55);
+  outline-offset: -4px;
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  color: var(--vermilion);
+}
+.hud-postcard__info {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 2rem 0.6rem 0.55rem;
+  background: linear-gradient(to top, rgba(14, 9, 6, 0.92) 0%, rgba(14, 9, 6, 0.75) 55%, transparent 100%);
+}
+.hud-postcard__kicker {
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ffb59a;
+}
+.hud-postcard__name {
+  display: block;
+  margin-top: 0.1rem;
+  font-family: var(--font-display), serif;
+  font-size: 0.98rem;
+  font-weight: 400;
+  line-height: 1.1;
+}
+.hud-postcard__teaser {
+  margin: 0.25rem 0 0;
+  font-size: 10.5px;
+  line-height: 1.35;
+  color: rgba(251, 247, 239, 0.85);
+}
+.hud-postcard__proof {
+  margin: 0.35rem 0 0;
+  padding-top: 0.3rem;
+  border-top: 1px solid rgba(251, 247, 239, 0.2);
+  font-size: 10.5px;
+  color: rgba(251, 247, 239, 0.75);
+}
+.hud-postcard__proof b {
+  margin-right: 0.25rem;
+  font-family: var(--font-display), serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #ffb59a;
+}
+@media (max-width: 760px) {
+  .hud-postcard {
+    display: none;
+  }
+}
+
+/* the "Say hello" menu on the island: always ink on paper, whatever the sky is doing */
+.world .hello__menu {
+  --bg: #f3ebdd;
+  --bg-2: rgba(29, 25, 21, 0.06);
+  --ink: #1d1915;
+  --rule: rgba(29, 25, 21, 0.14);
+  --muted: #6b5d50;
+  --accent: #c2402a;
+}
+/* an open menu sits above an open place card */
+.hud-top:has(.hello__menu) {
+  z-index: 40;
+}
+
+/* the spacing these sections used to get from an old global "section" rule (globals.css),
+   now set here so that rule could go: 3rem, 6rem from 768px, 8rem from 1024px */
+:where(section.hud-hero) {
+  width: 100%;
+  padding-block: 3rem;
+}
+@media (min-width: 768px) {
+  :where(section.hud-hero) {
+    padding-block: 6rem;
+  }
+}
+@media (min-width: 1024px) {
+  :where(section.hud-hero) {
+    padding-block: 8rem;
+  }
+}

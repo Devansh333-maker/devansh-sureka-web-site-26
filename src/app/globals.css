@@ -1,0 +1,131 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 30 50% 96%; /* A very light beige */
+    --foreground: 30 50% 15%; /* Dark brown */
+    --card: 30 50% 100%;
+    --card-foreground: 30 50% 15%;
+    --popover: 30 50% 100%;
+    --popover-foreground: 30 50% 15%;
+    --primary: 30 40% 40%; /* A rich brown */
+    --primary-foreground: 30 50% 98%;
+    --secondary: 30 50% 92%; /* A slightly darker beige */
+    --secondary-foreground: 30 50% 25%;
+    --muted: 30 50% 90%;
+    --muted-foreground: 30 30% 45%;
+    --accent: 30 40% 55%;
+    --accent-foreground: 30 50% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 30 40% 85%;
+    --input: 30 40% 85%;
+    --ring: 30 40% 40%;
+    --radius: 0.5rem;
+    --chart-1: 210 80% 60%;
+    --chart-2: 140 70% 50%;
+    --chart-3: 40 90% 65%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --work-experience-background: 33 34% 10%; /* A very dark brown */
+  }
+
+  .dark {
+    --background: 224 71.4% 4.1%;
+    --foreground: 0 0% 98%;
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 0 0% 98%;
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 224 71.4% 4.1%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --work-experience-background: 33 34% 10%; /* A very dark brown */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    scroll-behavior: smooth;
+  }
+}
+
+/* keyboard users can jump past the header */
+.skip-link {
+  position: fixed;
+  left: 12px;
+  top: -60px;
+  z-index: 400;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  background: #14110f;
+  color: #f3ebdd;
+  font-size: 14px;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 12px;
+}
+
+/* keyboard focus: one clear vermilion ring everywhere (mouse clicks don't show it) */
+:where(a, button, [role='button'], [role='tab'], [role='option'], summary, select, input, textarea, [tabindex]):focus-visible {
+  outline: 2px solid #d1492e;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* phones: small controls get an invisible hit area of at least 44 × 44 around them, so
+   they're easy to tap without looking any bigger. (Position only where nothing sets it.) */
+@media (max-width: 760px), (pointer: coarse) {
+  :where(
+      .theme-toggle, .float-controls button, .sound-toggle, .site-bar__brand, .site-bar__cta, .hud-brand, .hud-nav__cta,
+      .contact-block__mail, .contact-block__copy, .contact-block__links a, .site-foot__all, .site-foot__base-links a,
+      .p-link, .st__back, .st__step a, .dk__bar button, .ic__arrow, .ic__join, .cf__arrow, .cases__arrows button,
+      .case__open, .dossier__nav button, .dossier__pager button, .archive__place, .w-card__primary, .archive__filters button,
+      .tn__tabs button, .is__arrow, .is-view__bar button, .lb__btn, .lb__close, .fb__tool, .fb__arrow,
+      .site-foot__cols a, .site-foot__mail, .site-foot__copy, .w-card__secondary, .ac-sound, .pp__toggle, .st__print,
+      .hud-places li button
+    ) {
+    position: relative;
+  }
+  :is(
+      .theme-toggle, .float-controls button, .sound-toggle, .site-bar__brand, .site-bar__cta, .hud-brand, .hud-nav__cta,
+      .contact-block__mail, .contact-block__copy, .contact-block__links a, .site-foot__all, .site-foot__base-links a,
+      .p-link, .st__back, .st__step a, .dk__bar button, .ic__arrow, .ic__join, .cf__arrow, .cases__arrows button,
+      .case__open, .dossier__nav button, .dossier__pager button, .archive__place, .w-card__primary, .archive__filters button,
+      .tn__tabs button, .is__arrow, .is-view__bar button, .lb__btn, .lb__close, .fb__tool, .fb__arrow,
+      .site-foot__cols a, .site-foot__mail, .site-foot__copy, .w-card__secondary, .ac-sound, .pp__toggle, .st__print,
+      .hud-places li button
+    )::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: max(100%, 44px);
+    height: max(100%, 44px);
+    transform: translate(-50%, -50%);
+  }
+}

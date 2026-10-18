@@ -1,0 +1,355 @@
+/* The explainer series as a story file: the facts on the left, the slides as a stack */
+.is {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
+  border-radius: 20px;
+  overflow: hidden;
+  background: #131118;
+  color: #efe8dc;
+  box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.55);
+  /* the panel is always dark, so it takes a lighter clay than the page's (AA on #131118) */
+  --accent: #c0704b;
+}
+.is__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: clamp(1.5rem, 3vw, 2.75rem);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+.is__file {
+  margin: 0;
+  font-family: var(--mono), monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+}
+.is__file b {
+  color: #fff;
+  font-weight: 500;
+}
+.is__title {
+  margin: 0;
+  font-family: var(--font-display), serif;
+  font-size: clamp(1.7rem, 2.6vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.08;
+}
+.is__lede {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: rgba(239, 232, 220, 0.7);
+}
+/* what this slide is */
+.is__now {
+  min-height: 7.6rem;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+}
+.is__now-k {
+  display: block;
+  font-family: var(--mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  color: rgba(239, 232, 220, 0.6);
+}
+.is__now strong {
+  display: block;
+  margin: 0.2rem 0 0.35rem;
+  font-size: 17px;
+  font-weight: 600;
+}
+.is__now p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: rgba(239, 232, 220, 0.75);
+}
+.is__now p b {
+  color: var(--accent);
+  font-weight: 600;
+}
+/* altitude profile: five peaks, the current one lit */
+.is__alt {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: end;
+  gap: 0.5rem;
+  height: 104px;
+  padding-top: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.is__peak {
+  position: relative;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.is__peak i {
+  width: 100%;
+  height: calc(18% + var(--h) * 0.62);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  background: linear-gradient(180deg, rgba(239, 232, 220, 0.45), rgba(239, 232, 220, 0.12));
+  transition: background 0.4s, transform 0.4s;
+  transform-origin: bottom;
+}
+.is__peak span {
+  position: absolute;
+  bottom: calc(18% + var(--h) * 0.62 + 4px);
+  font-family: var(--mono), monospace;
+  font-size: 10px;
+  color: rgba(239, 232, 220, 0.55);
+}
+.is__peak small {
+  position: absolute;
+  bottom: -1.3rem;
+  font-family: var(--mono), monospace;
+  font-size: 10px;
+  color: rgba(239, 232, 220, 0.6);
+}
+.is__peak.is-on i {
+  background: linear-gradient(180deg, #fff, var(--accent));
+  transform: scaleY(1.04);
+}
+.is__peak.is-on span,
+.is__peak.is-on small {
+  color: #fff;
+}
+.is__meta {
+  display: flex;
+  gap: 1.75rem;
+  margin: 1.2rem 0 0;
+  padding-top: 1rem;
+}
+.is__meta dt {
+  font-family: var(--mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(239, 232, 220, 0.5);
+}
+.is__meta dd {
+  margin: 0.3rem 0 0;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.is__ctrl {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: auto;
+}
+.is__arrow {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: none;
+  color: inherit;
+  font-size: 17px;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+.is__arrow:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.is__open {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-left: auto;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.is__open i {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-style: normal;
+}
+
+/* the stack */
+.is__stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: clamp(420px, 44vw, 600px);
+  padding: 3.5rem 2rem;
+  background:
+    radial-gradient(60% 60% at 55% 50%, rgba(255, 255, 255, 0.05), transparent 70%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 40px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 40px);
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+}
+.is__stage-k,
+.is__stage-f {
+  position: absolute;
+  font-family: var(--mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: rgba(239, 232, 220, 0.45);
+}
+.is__stage-k {
+  top: 1.4rem;
+  left: 1.6rem;
+}
+.is__stage-f {
+  right: 1.6rem;
+  bottom: 1.3rem;
+}
+.is__stack {
+  position: relative;
+  width: min(330px, 70%);
+  aspect-ratio: 4 / 5;
+}
+.is__card {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 30px 60px -24px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  /* each card further back sits up and to the right, turned a little, a little darker */
+  transform: translate(calc(var(--k) * 22px), calc(var(--k) * -14px)) rotate(calc(var(--k) * 2.6deg)) scale(calc(1 - var(--k) * 0.045));
+  filter: brightness(calc(1 - var(--k) * 0.2));
+  transition:
+    transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 0.55s ease;
+  pointer-events: none;
+}
+.is__card.is-out {
+  animation: is-out 0.52s cubic-bezier(0.5, 0, 0.75, 0) forwards;
+}
+.is__card.is-back {
+  animation: is-back 0.52s cubic-bezier(0.5, 0, 0.75, 0) forwards;
+}
+@keyframes is-out {
+  to {
+    transform: translate(-70%, 6%) rotate(-14deg);
+    opacity: 0;
+  }
+}
+@keyframes is-back {
+  to {
+    transform: translate(70%, 6%) rotate(14deg);
+    opacity: 0;
+  }
+}
+.is__badge {
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.9rem;
+  z-index: 30;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(15, 13, 18, 0.78);
+  backdrop-filter: blur(6px);
+  font-family: var(--mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: #fff;
+}
+
+/* full size */
+.is-view {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 1rem;
+  padding: 4vh 4vw;
+  background: rgba(10, 9, 14, 0.92);
+  backdrop-filter: blur(6px);
+  animation: is-fade 0.3s ease both;
+  /* it lives at the end of <body> (so the page can be set aside), outside the place's fonts */
+  --mono: var(--font-mono), ui-monospace, monospace;
+}
+.is-view img {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 10px;
+}
+.is-view__bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--mono), monospace;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+}
+.is-view__bar button,
+.is-view__close {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  cursor: pointer;
+}
+.is-view__close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+}
+@keyframes is-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .is {
+    grid-template-columns: 1fr;
+  }
+  .is__panel {
+    order: 2;
+    border-right: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .is__stage {
+    min-height: 0;
+    padding: 3.2rem 1.5rem 3rem;
+  }
+  .is__stack {
+    width: min(280px, 66%);
+    margin-right: 8%;
+  }
+  .is__stage {
+    padding-top: 3.8rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .is__card {
+    transition: none;
+  }
+  .is__card.is-out,
+  .is__card.is-back {
+    animation: none;
+    opacity: 0;
+  }
+}

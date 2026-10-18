@@ -1,0 +1,75 @@
+/* fast travel into a place, through an arch (see ArchPortal.tsx) */
+.arch-portal {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  visibility: hidden;
+  background: #0d0b0a;
+  pointer-events: none;
+}
+.arch-portal.is-on {
+  visibility: visible;
+  pointer-events: auto;
+}
+.arch-portal.is-leaving {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.arch-portal__img {
+  position: absolute;
+  inset: -4%;
+  background-size: cover;
+  background-position: center;
+  animation: arch-portal-drift 6s ease-out both;
+}
+@keyframes arch-portal-drift {
+  from {
+    scale: 1.12;
+  }
+  to {
+    scale: 1.02;
+  }
+}
+.arch-portal__glow {
+  position: absolute;
+  inset: -10%;
+  mix-blend-mode: screen;
+  opacity: 0.45;
+  background: radial-gradient(55% 45% at 70% 22%, rgba(255, 196, 120, 0.6), transparent 60%);
+}
+.arch-portal__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(10, 8, 6, 0.7), transparent 45%);
+}
+.arch-portal__text {
+  position: absolute;
+  left: 50%;
+  bottom: 9%;
+  translate: -50% 0;
+  width: max-content;
+  max-width: 92vw;
+  text-align: center;
+  color: #f3ebdd;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.arch-portal.is-titled .arch-portal__text {
+  opacity: 1;
+}
+.arch-portal__chap {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ffd08a;
+}
+.arch-portal__name {
+  margin-top: 10px;
+  font-family: var(--font-display), serif;
+  font-weight: 300;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}

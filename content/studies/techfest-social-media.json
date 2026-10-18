@@ -1,0 +1,87 @@
+{
+ "slug": "techfest-social-media",
+ "title": "Techfest social media campaign",
+ "kind": "Campaign plan · IIT Bombay Techfest",
+ "year": "2024",
+ "context": "A social media campaign plan for launching Techfest's theme date and main website.",
+ "summary": "I planned the social media launch of Techfest's new theme and main website across Facebook, Instagram, Twitter and LinkedIn. The plan sets objectives, maps five audience groups, gives each platform its own strategy, and lays out a four-week content calendar with the KPIs and tools to measure it.",
+ "points": [
+  "Four objectives: awareness, website traffic, event registrations and audience engagement.",
+  "Content calendar from Day 1 announcement to Week 4 reminders, with captions, hashtags and posting times.",
+  "Tracks reach, engagement, website traffic, conversion rate, follower growth and click-through rate."
+ ],
+ "mode": "deck",
+ "pages": [
+  {
+   "src": "/opt/studies/techfest-social-media/01.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/techfest-social-media/02.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/techfest-social-media/03.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/techfest-social-media/04.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/techfest-social-media/05.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/techfest-social-media/06.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/techfest-social-media/07.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/techfest-social-media/08.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/techfest-social-media/09.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/techfest-social-media/10.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/techfest-social-media/11.webp",
+   "w": 1600,
+   "h": 900
+  }
+ ],
+ "body": [
+  {
+   "h": "About the deck"
+  },
+  {
+   "p": "The plan was built for the launch of Techfest's theme and main website, with the aim of building buzz and turning it into registrations."
+  },
+  {
+   "list": [
+    "**Audiences:** students, industry professionals, academics, sponsors and partners, and media.",
+    "**Platforms:** Facebook (events, live videos, polls), Instagram (teasers, theme reveal, countdown stories), Twitter (live updates and threads) and LinkedIn (articles, speaker announcements, networking).",
+    "**Content calendar:** a theme reveal and website launch in the first five days, then a live Q&A, countdowns, speaker and workshop announcements, prof shows and reminders over weeks 2 to 4, all under #Techfest2024.",
+    "**Measurement:** Facebook Insights, Instagram, Twitter and LinkedIn analytics, and Google Analytics for website traffic and conversions."
+   ]
+  }
+ ]
+}

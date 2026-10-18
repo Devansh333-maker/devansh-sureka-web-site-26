@@ -1,0 +1,67 @@
+/* ── emblems: fine-line drawings that draw themselves in ── */
+.emblem {
+  display: block;
+  color: var(--accent, #c2402a);
+  overflow: visible;
+}
+.emblem path,
+.emblem circle {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: emblem-draw 1.6s cubic-bezier(0.6, 0.05, 0.3, 1) forwards;
+  animation-delay: calc(var(--k, 0) * 0.14s + 0.15s);
+}
+.emblem__num {
+  font-family: var(--font-condensed), sans-serif;
+  font-size: 34px;
+  fill: currentColor;
+  opacity: 0;
+  animation: emblem-fade 0.6s 1.2s forwards;
+}
+@keyframes emblem-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes emblem-fade {
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .emblem path,
+  .emblem circle {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .emblem__num {
+    animation: none;
+    opacity: 1;
+  }
+}
+.p-hero__emblem {
+  width: clamp(4.5rem, 8vw, 6.5rem);
+  height: auto;
+  margin-bottom: 1.25rem;
+  margin-left: -0.4rem;
+}
+.p-next__emblem {
+  width: 4.5rem;
+  height: auto;
+  justify-self: end;
+  margin-bottom: 0.5rem;
+}
+.p-next__link:not(:hover) .p-next__emblem path,
+.p-next__link:not(:hover) .p-next__emblem circle {
+  animation: none;
+  stroke-dashoffset: 0;
+}
+.p-next__link:hover .p-next__emblem path,
+.p-next__link:hover .p-next__emblem circle {
+  animation-duration: 1s;
+}
+@media (max-width: 900px) {
+  .p-next__emblem {
+    justify-self: start;
+  }
+}

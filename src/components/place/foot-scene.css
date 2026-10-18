@@ -1,0 +1,315 @@
+/* The footer as Pilani at dusk: the words in the night sky, the painting underneath,
+   its top dissolving into the sky so the two are one picture. */
+
+.site-foot.has-scene {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: #f3ebdd;
+  background: #13111f;
+  padding-bottom: 0;
+}
+.site-foot.has-scene .site-foot__inner {
+  position: relative;
+  z-index: 2;
+}
+.site-foot.has-scene .site-foot__big,
+.site-foot.has-scene .site-foot__mail {
+  text-shadow: 0 2px 24px rgba(10, 6, 16, 0.85);
+}
+.site-foot.has-scene .site-foot__mail {
+  position: relative;
+  z-index: 3;
+  margin-top: 1.4rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid rgba(243, 235, 221, 0.28);
+  border-radius: 999px;
+  background: rgba(19, 17, 31, 0.72);
+  backdrop-filter: blur(6px);
+  color: #f3ebdd;
+  text-decoration: none;
+  transition: background 0.25s, border-color 0.25s;
+}
+.site-foot.has-scene .site-foot__mail:hover {
+  background: rgba(240, 121, 79, 0.18);
+  border-color: #f0794f;
+}
+.site-foot.has-scene .site-foot__all {
+  display: block;
+  width: fit-content;
+  margin-top: 1rem;
+  font-size: 15px;
+  color: #f3ebdd;
+  text-shadow: 0 2px 18px rgba(10, 6, 16, 0.9);
+  border-bottom: 1px solid rgba(240, 121, 79, 0.6);
+  padding-bottom: 2px;
+}
+.site-foot.has-scene .site-foot__all:hover {
+  border-color: #f0794f;
+}
+.site-foot.has-scene .site-foot__big em {
+  color: #f0794f;
+}
+.site-foot.has-scene .site-foot__label {
+  color: rgba(243, 235, 221, 0.55);
+}
+/* the © line sits in the dark hillside, above the strip where the walking guide and the
+   sound button live */
+.site-foot.has-scene .site-foot__base {
+  position: absolute;
+  z-index: 3;
+  left: clamp(1rem, 4vw, 3rem);
+  right: clamp(1rem, 4vw, 3rem);
+  bottom: 104px;
+  max-width: 1240px;
+  margin: 0 auto;
+  border-top-color: rgba(243, 235, 221, 0.14);
+  color: rgba(243, 235, 221, 0.75);
+}
+/* as tall as the painting itself (so all of it shows, maple to sun), never shorter than
+   the words need */
+.site-foot.has-scene {
+  min-height: max(42.85vw, 600px);
+  padding-bottom: calc(104px + 3rem);
+}
+
+/* the painting fills the whole footer, behind everything */
+.fs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  container-type: size;
+  /* the page above melts into the painting's night sky */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 90px);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 90px);
+}
+/* the words sit in the sky: a little extra night behind them keeps them easy to read */
+.fs::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(42% 46% at 16% 22%, rgba(19, 17, 31, 0.55), transparent 75%),
+    radial-gradient(30% 40% at 86% 22%, rgba(19, 17, 31, 0.45), transparent 75%),
+    linear-gradient(to top, rgba(12, 9, 16, 0.5) 0%, rgba(12, 9, 16, 0) 18%);
+}
+/* covers the footer at any size, bottom-aligned (the sky is what gets cropped), and keeps
+   the tower in view on narrow screens */
+.fs__art {
+  position: absolute;
+  bottom: 0;
+  left: 62%;
+  translate: -62% 0;
+  width: max(100cqw, 233.4cqh);
+  aspect-ratio: 1916 / 821;
+  container-type: inline-size;
+}
+.fs__art > picture,
+.fs__img,
+.fs__gl,
+.fs__over,
+.fs__leaves {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.fs__img {
+  display: block;
+  object-fit: cover;
+}
+.fs__gl {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.fs__art.is-live .fs__gl {
+  opacity: 1;
+}
+.fs__over * {
+  transform-box: fill-box;
+}
+@media (max-width: 899px) {
+  .site-foot.has-scene {
+    min-height: 0;
+    padding-bottom: calc(176px + 5rem + 46vw);
+  }
+  /* the guide rides higher on a phone (above the floating buttons) */
+  .site-foot.has-scene .site-foot__base {
+    bottom: 176px;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+}
+
+.fs__sun {
+  transform-origin: center;
+  mix-blend-mode: screen;
+  animation: fs-breathe 7s ease-in-out infinite alternate;
+}
+@keyframes fs-breathe {
+  from {
+    opacity: 0.6;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+.fs__clock {
+  mix-blend-mode: screen;
+  animation: fs-clock 4s ease-in-out infinite alternate;
+}
+@keyframes fs-clock {
+  from {
+    opacity: 0.45;
+  }
+  to {
+    opacity: 0.85;
+  }
+}
+@keyframes fs-beacon {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  6%,
+  30% {
+    opacity: 1;
+  }
+}
+.fs__light {
+  mix-blend-mode: screen;
+  animation: fs-twinkle 3s ease-in-out infinite alternate;
+}
+@keyframes fs-twinkle {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.45;
+  }
+}
+
+/* the flock: up and away to the right, then round again */
+.fs__drift {
+  animation: fs-fly 34s linear infinite;
+}
+@keyframes fs-fly {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  4% {
+    opacity: 1;
+  }
+  45% {
+    transform: translate(230px, -70px);
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(520px, -190px);
+    opacity: 0;
+  }
+}
+@keyframes fs-flap {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-38deg) scaleY(0.7);
+  }
+}
+@keyframes fs-flap-r {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(38deg) scaleY(0.7);
+  }
+}
+
+/* leaves: fall from the maple, drifting right on the breeze, tumbling as they go */
+.fs__leaves {
+  overflow: hidden;
+}
+.fs__leaves span {
+  position: absolute;
+  animation: fs-leaf linear infinite;
+}
+.fs__leaves svg {
+  display: block;
+  animation: fs-tumble ease-in-out infinite alternate;
+}
+@keyframes fs-leaf {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  6% {
+    opacity: 0.95;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(48cqw, 34cqw);
+    opacity: 0;
+  }
+}
+@keyframes fs-tumble {
+  from {
+    transform: translateX(-14px) rotate(-40deg) scaleX(1);
+  }
+  to {
+    transform: translateX(14px) rotate(70deg) scaleX(0.45);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fs *,
+  .fs__leaves span {
+    animation: none !important;
+  }
+}
+.site-foot__base-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.6rem;
+}
+/* the address and its copy button, side by side */
+.site-foot__mailrow {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.4rem;
+}
+.site-foot.has-scene .site-foot__mailrow .site-foot__mail {
+  margin-top: 0;
+}
+.site-foot__copy {
+  padding: 0.55rem 1rem;
+  border: 1px solid rgba(243, 235, 221, 0.28);
+  border-radius: 999px;
+  background: rgba(19, 17, 31, 0.72);
+  backdrop-filter: blur(6px);
+  color: #f3ebdd;
+  font: inherit;
+  font-size: 15px;
+  line-height: inherit;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s;
+}
+.site-foot__copy:hover {
+  background: rgba(240, 121, 79, 0.18);
+  border-color: #f0794f;
+}

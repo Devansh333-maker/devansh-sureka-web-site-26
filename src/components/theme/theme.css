@@ -1,0 +1,190 @@
+/* ─────────────────────────────────────────────
+   Dark theme. Every place keeps its own character, just after dark:
+   the sandstone yard at night, the studio's dark glass, ink-black paper.
+   (The Arena is dark in both themes.)
+   ───────────────────────────────────────────── */
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+}
+html[data-theme='dark'] body {
+  background: #14120f;
+}
+
+html[data-theme='dark'] .site {
+  --bg: #14120f;
+  --bg-2: #1d1a16;
+  --ink: #efe7da;
+  --muted: #a89c8d;
+  --rule: rgba(239, 231, 218, 0.14);
+  --accent: #e2694f;
+  --accent-2: #8fa5c8;
+}
+html[data-theme='dark'] .site:has([data-place='workshop']) {
+  --bg: #17110c;
+  --bg-2: #21180f;
+  --ink: #f1e4cd;
+  --muted: #b39b80;
+  --rule: rgba(241, 228, 205, 0.15);
+  --accent: #e2814c;
+  --accent-2: #86a9b8;
+}
+html[data-theme='dark'] .site:has([data-place='studio']) {
+  --bg: #0e1114;
+  --bg-2: #15191d;
+  --ink: #e8ebee;
+  --muted: #98a2ab;
+  --rule: rgba(232, 235, 238, 0.13);
+  --accent: #61b6dc;
+  --accent-2: #e2694f;
+}
+html[data-theme='dark'] .site:has([data-place='commons']) {
+  --bg: #170e0c;
+  --bg-2: #221512;
+  --ink: #f4e9d6;
+  --muted: #b9a291;
+  --rule: rgba(244, 233, 214, 0.15);
+  --accent: #e45b6e;
+  --accent-2: #e3ac47;
+}
+html[data-theme='dark'] .site:has([data-place='press']) {
+  --bg: #121110;
+  --bg-2: #1b1a17;
+  --ink: #efe9dc;
+  --muted: #a69e91;
+  --rule: rgba(239, 233, 220, 0.18);
+  --accent: #e2694f;
+  --accent-2: #8fa2dc;
+}
+html[data-theme='dark'] .site:has([data-place='notebook']) {
+  --bg: #101012;
+  --bg-2: #18181b;
+  --ink: #f2ede4;
+  --muted: #a39d95;
+  --rule: rgba(242, 237, 228, 0.13);
+  --accent: #e46a5d;
+  --accent-2: #a2b6a1;
+}
+/* figures with a baked-in light swatch */
+html[data-theme='dark'] .fig-mix .is-lime,
+html[data-theme='dark'] .fig-mix__key .is-lime::before {
+  background: #d8d2c4;
+}
+
+/* the quick-travel box, the sound switch and the 404 page */
+html[data-theme='dark'] .qt-box {
+  background: #1d1a16;
+  color: #efe7da;
+  border-color: rgba(239, 231, 218, 0.12);
+}
+html[data-theme='dark'] .qt kbd {
+  background: #14120f;
+  color: #c9bcab;
+  border-color: rgba(239, 231, 218, 0.2);
+}
+html[data-theme='dark'] .qt-hint,
+html[data-theme='dark'] .qt-foot,
+html[data-theme='dark'] .qt-empty {
+  color: #a89c8d;
+}
+html[data-theme='dark'] .qt-search,
+html[data-theme='dark'] .qt-foot {
+  border-color: rgba(239, 231, 218, 0.08);
+}
+html[data-theme='dark'] .sound-toggle {
+  background: rgba(29, 26, 22, 0.85);
+  color: #efe7da;
+  border-color: rgba(239, 231, 218, 0.16);
+}
+html[data-theme='dark'] .lost {
+  background: radial-gradient(120% 90% at 55% 50%, #2a2f55 0%, #171a33 55%, #0b0c1a 100%);
+  color: #f3ebdd;
+}
+html[data-theme='dark'] .lost .survey {
+  color: rgba(226, 220, 240, 0.4);
+}
+html[data-theme='dark'] .lost__say {
+  background: rgba(29, 26, 22, 0.92);
+  border-color: rgba(239, 231, 218, 0.12);
+}
+html[data-theme='dark'] .lost__places a {
+  border-color: rgba(239, 231, 218, 0.12);
+}
+html[data-theme='dark'] .lost__home {
+  background: #f3ebdd;
+  color: #14110f;
+}
+
+/* the switch itself */
+.theme-toggle {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+.theme-toggle:hover {
+  opacity: 1;
+  transform: rotate(-20deg);
+}
+.theme-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+.theme-toggle .sun-rays {
+  transition: opacity 0.3s, transform 0.4s;
+  transform-origin: 12px 12px;
+}
+html[data-theme='dark'] .theme-toggle .sun-rays {
+  opacity: 0;
+  transform: scale(0.5) rotate(-45deg);
+}
+.theme-toggle .moon-cut {
+  transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+  transform: translate(10px, -10px);
+}
+html[data-theme='dark'] .theme-toggle .moon-cut {
+  transform: translate(0, 0);
+}
+/* colours glide when the theme changes */
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition:
+    background-color 0.45s ease,
+    color 0.45s ease,
+    border-color 0.45s ease !important;
+}
+
+/* the Spotify funnel's deepest greens were too bright for its light text after dark (AA) */
+html[data-theme='dark'] .tf li {
+  background: color-mix(in srgb, #1db954 calc(14% + var(--i) * 8%), var(--bg));
+}
+html[data-theme='dark'] .tf li span {
+  color: color-mix(in srgb, var(--ink) 85%, transparent);
+}
+/* the "now" tag sits on the bright coral accent: dark letters read better than white there */
+html[data-theme='dark'] .tn__tag--now {
+  color: #1a1210;
+}
+/* the water diagram's panel: a third white turned it mid-grey after dark, too light for its
+   muted caption and legend (AA); a softer lift keeps it a panel */
+html[data-theme='dark'] .ws {
+  background: color-mix(in srgb, var(--bg) 86%, white);
+}
+/* the Chaupal's bar chart sits on the bright rose accent after dark: dark letters there (AA) */
+html[data-theme='dark'] .fig-umang__bar {
+  color: #1a0e0c;
+}
+/* quick travel's group names: the vermilion is too deep on the dark box (AA) */
+html[data-theme='dark'] .qt-group {
+  color: #e2694f;
+}

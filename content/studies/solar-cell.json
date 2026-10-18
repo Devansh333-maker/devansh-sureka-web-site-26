@@ -1,0 +1,99 @@
+{
+ "slug": "solar-cell",
+ "title": "Solar cell technology",
+ "kind": "Pitch deck",
+ "year": "2025",
+ "context": "A team pitch at Prodexity-Enigma'25 for Vivani Consulting Pvt Ltd on rooftop solar, made with three teammates as team 2B||!2B.",
+ "summary": "With three teammates, I built a pitch on how Vivani Consulting could implement solar cell technology in the rooftop solar market. The deck covers a SWOT analysis, the main competitors, a 36-month product development timeline, operational improvements and a three-year financial plan.",
+ "points": [
+  "Operational changes cut installation time from 3-4 weeks to 7-10 days.",
+  "Capacity plan grows from 2,500 kW (2024 pilot) to 10,000 kW (2026 full scale).",
+  "Projected profit rises from break-even in 2024 to ₹55 crore in 2026."
+ ],
+ "mode": "deck",
+ "pages": [
+  {
+   "src": "/opt/studies/solar-cell/01.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/solar-cell/02.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/solar-cell/03.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/solar-cell/04.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/solar-cell/05.webp",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "src": "/opt/studies/solar-cell/06.webp",
+   "w": 1600,
+   "h": 900
+  }
+ ],
+ "body": [
+  {
+   "h": "About the deck"
+  },
+  {
+   "p": "The pitch looks at Vivani's strengths (renewable energy consultancy experience, supplier relationships) against larger players such as Tata Power Solar, Waaree Energies, Loom Solar and Adani Solar, then sets out how to execute."
+  },
+  {
+   "list": [
+    "**Product timeline:** R&D (months 1-6), product design (7-12), testing (13-18), pre-launch marketing (19-24) and launch (25-36).",
+    "**Operational improvements:** standard operating procedures and prefabrication for installation, AI and drone-based site assessment, installer training with ITIs, just-in-time supply chains and AI-driven design.",
+    "**Impact claims:** 80% fewer manual site visits and 10-15% more solar energy production from optimised design."
+   ]
+  },
+  {
+   "table": {
+    "head": [
+     "Year",
+     "Capacity (kW)",
+     "CAPEX (₹ Cr)",
+     "Revenue (₹ Cr)",
+     "OPEX (₹ Cr)",
+     "Profit (₹ Cr)"
+    ],
+    "rows": [
+     [
+      "2024",
+      "2,500 (pilot)",
+      "24",
+      "18",
+      "18",
+      "Break-even"
+     ],
+     [
+      "2025",
+      "5,000 (expansion)",
+      "38",
+      "42",
+      "28",
+      "14"
+     ],
+     [
+      "2026",
+      "10,000 (full scale)",
+      "33",
+      "85",
+      "30",
+      "55"
+     ]
+    ]
+   }
+  }
+ ]
+}

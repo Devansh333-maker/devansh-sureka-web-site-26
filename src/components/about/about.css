@@ -1,0 +1,560 @@
+/* About: the loader, the golden opening, the courtyard in three acts, and the night close */
+
+[data-place='about'] {
+  --ab-night: #0b0807;
+  --ab-paper: #f3ebdd;
+  --ab-gold: #d9a441;
+  --ab-warm: #ffd08a;
+  --ab-coral: #ff8a6a;
+}
+
+/* the header sits over the full-bleed scenes, and turns light while they're behind it */
+.site:has([data-place='about']) .site-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+html[data-ab-dark='1'] .site:has([data-place='about']) .site-bar {
+  /* (the about palette lives on the page, not on the bar beside it, so spell it out) */
+  color: #f3ebdd;
+  /* a little night behind the bar, so words scrolling under it don't show through */
+  background: linear-gradient(to bottom, rgba(11, 8, 7, 0.82), rgba(11, 8, 7, 0.55));
+  box-shadow: 0 1px 0 rgba(243, 235, 221, 0.08);
+  backdrop-filter: blur(10px) saturate(1.1);
+}
+html[data-ab-dark='1'] .site:has([data-place='about']) .site-bar {
+  /* the bar's own parts read their colours from these */
+  --ink: #f3ebdd;
+  --muted: rgba(243, 235, 221, 0.7);
+  --bg: #0b0807;
+}
+html.ab-loading,
+html.ab-loading body {
+  overflow: hidden;
+}
+html.ab-loading .site-bar {
+  opacity: 0;
+  /* out of the Tab order too while it's invisible */
+  visibility: hidden;
+}
+
+/* ── the loading screen ── */
+.ab-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  overflow: hidden;
+  background: var(--ab-night);
+  color: var(--ab-paper);
+}
+.ab-loader__bg {
+  position: absolute;
+  inset: -4%;
+  background: url(/opt/about/fountain.webp) center 60% / cover;
+  filter: brightness(0.5);
+  transform: scale(1.12);
+  transition: transform 2.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.ab-loader.is-go .ab-loader__bg {
+  transform: scale(1.04);
+}
+.ab-loader__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(60% 60% at 50% 50%, transparent, rgba(8, 5, 4, 0.7));
+}
+.ab-loader__title {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 0 1rem;
+}
+.ab-loader__title p {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ab-warm);
+  opacity: 0;
+  transition: opacity 0.8s ease 0.5s;
+}
+.ab-loader.is-go .ab-loader__title p {
+  opacity: 1;
+}
+.ab-loader__title .route {
+  letter-spacing: 0.24em;
+  color: rgba(243, 235, 221, 0.72);
+}
+.ab-loader__title .ab-loader__h {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(3.4rem, 9vw, 9rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin: 16px 0 22px;
+}
+.ab-loader__title .ab-loader__h em {
+  color: var(--ab-coral);
+}
+.ab-loader__title .w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.06em;
+}
+.ab-loader__title .w > i {
+  display: inline-block;
+  font-style: inherit;
+  transform: translateY(105%);
+  transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.ab-loader.is-go .ab-loader__title .w > i {
+  transform: none;
+}
+.ab-loader__bar {
+  position: absolute;
+  left: 50%;
+  bottom: 12vh;
+  width: min(320px, 60vw);
+  translate: -50% 0;
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: rgba(243, 235, 221, 0.6);
+}
+.ab-loader__bar i {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: rgba(243, 235, 221, 0.18);
+}
+.ab-loader__bar b {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--ab-gold);
+  transition: width 0.3s ease;
+}
+/* leaving: the scene opens through an arch */
+.ab-loader.is-out {
+  animation: ab-arch-out 1.3s cubic-bezier(0.7, 0, 0.2, 1) forwards;
+}
+@keyframes ab-arch-out {
+  from {
+    clip-path: inset(0 0 0 0 round 0);
+  }
+  to {
+    clip-path: inset(50% 50% 50% 50% round 999px 999px 0 0);
+    opacity: 0.2;
+  }
+}
+
+/* ── the opening ── */
+.ab-open {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  min-height: 560px;
+  overflow: hidden;
+  background: var(--ab-night);
+  color: var(--ab-paper);
+}
+.ab-open__bg {
+  position: absolute;
+  inset: -4%;
+  background: url(/opt/about/golden.webp) center / cover;
+  will-change: transform;
+}
+.ab-open__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(10, 7, 5, 0.86) 0%, rgba(10, 7, 5, 0.55) 45%, rgba(10, 7, 5, 0.25) 75%),
+    linear-gradient(0deg, rgba(10, 7, 5, 0.85), transparent 40%);
+}
+.ab-hero {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: end;
+  padding: 16vh clamp(20px, 7vw, 120px) 9vh;
+}
+.ab-hero__text > * {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.ab-hero.is-on .ab-hero__text > * {
+  opacity: 1;
+  transform: none;
+}
+.ab-hero.is-on .ab-hero__text > :nth-child(2) {
+  transition-delay: 0.1s;
+}
+.ab-hero.is-on .ab-hero__text > :nth-child(3) {
+  transition-delay: 0.2s;
+}
+.ab-hero.is-on .ab-hero__text > :nth-child(4) {
+  transition-delay: 0.3s;
+}
+.ab-hero__name {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  letter-spacing: -0.01em;
+}
+.ab-hero__name em,
+.ab-hero__title em {
+  color: var(--ab-coral);
+}
+.ab-kicker {
+  margin-top: 0.9rem;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ab-warm);
+}
+.ab-hero__title {
+  margin-top: 0.9rem;
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(2.8rem, min(7vw, 12vh), 6.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+.ab-lede {
+  margin-top: 1.3rem;
+  max-width: 34rem;
+  font-size: clamp(1rem, 1.35vw, 1.18rem);
+  line-height: 1.6;
+  color: rgba(243, 235, 221, 0.82);
+}
+.ab-lede strong {
+  color: #fff;
+  font-weight: 500;
+}
+.ab-arch {
+  position: relative;
+  height: min(calc(100vh - 13rem), 600px);
+  aspect-ratio: 3 / 4;
+  border-radius: 999px 999px 14px 14px;
+  overflow: hidden;
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.8);
+  clip-path: inset(100% 0 0 0 round 999px 999px 14px 14px);
+  transition: clip-path 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.25s;
+}
+.ab-hero.is-on .ab-arch {
+  clip-path: inset(0 0 0 0 round 999px 999px 14px 14px);
+}
+.ab-arch__img {
+  position: absolute;
+  inset: -5%;
+  background: url(/me/hill-jaipur.webp) 50% 55% / cover;
+  will-change: transform;
+}
+.ab-arch::after {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(255, 226, 180, 0.6);
+  border-radius: 999px 999px 8px 8px;
+  pointer-events: none;
+}
+.ab-arch__tag {
+  position: absolute;
+  z-index: 2;
+  right: 24px;
+  bottom: 20px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ab-warm);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+.ab-cue {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  bottom: 3vh;
+  translate: -50% 0;
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(243, 235, 221, 0.6);
+}
+
+/* ── the courtyard ── */
+.ab-court {
+  position: relative;
+  height: 620vh;
+  background: var(--ab-night);
+  color: var(--ab-paper);
+}
+.ab-pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+.ab-light {
+  position: absolute;
+  inset: -5%;
+  background-image: var(--img);
+  background-size: cover;
+  background-position: center;
+  will-change: opacity, transform;
+}
+.ab-sweep {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0;
+  background: linear-gradient(100deg, transparent 30%, rgba(255, 235, 200, 0.55) 48%, rgba(255, 235, 200, 0) 62%);
+  background-size: 260% 100%;
+}
+.ab-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: linear-gradient(90deg, rgba(8, 6, 5, 0.8), rgba(8, 6, 5, 0.2) 50%, transparent 70%), linear-gradient(0deg, rgba(8, 6, 5, 0.75), transparent 45%);
+}
+.ab-gilt {
+  position: absolute;
+  z-index: 5;
+  left: 72%;
+  top: 46%;
+  width: min(28vw, 380px);
+  aspect-ratio: 4 / 5;
+  translate: -50% -50%;
+  padding: 22px;
+  opacity: 0;
+  background: linear-gradient(135deg, #8a6420, #f1d27a 22%, #a57a2a 45%, #f6dc8e 62%, #7c5a1c 85%);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7), inset 0 0 0 3px rgba(60, 40, 10, 0.6), inset 0 0 0 9px rgba(255, 230, 160, 0.25);
+}
+.ab-gilt__canvas {
+  position: absolute;
+  inset: 22px;
+  background: url(/me/formal.webp) 50% 30% / cover;
+  filter: sepia(0.55) saturate(0.8) contrast(1.18) brightness(0.9) blur(0.3px);
+  box-shadow: inset 0 0 80px rgba(30, 15, 5, 0.9);
+}
+.ab-gilt__canvas::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.7;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .42 0 0 0 0 .3 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.ab-plaque {
+  position: absolute;
+  z-index: 6;
+  left: 72%;
+  top: calc(46% + min(17.5vw, 238px));
+  translate: -50% 0;
+  padding: 6px 14px;
+  opacity: 0;
+  background: linear-gradient(#e9c870, #a77d2c);
+  color: #2b1a08;
+  font-family: var(--display);
+  font-size: 14px;
+  white-space: nowrap;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5);
+}
+.ab-window-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 11;
+  pointer-events: none;
+}
+.ab-window {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  width: 56vmin;
+  height: 76vmin;
+  translate: -50% -50%;
+  border-radius: 999px 999px 10px 10px;
+  box-shadow: 0 0 0 200vmax #241510, inset 0 0 40px rgba(0, 0, 0, 0.6);
+  outline: 1px solid rgba(217, 164, 65, 0.6);
+  outline-offset: -12px;
+  will-change: transform, opacity;
+}
+.ab-acts {
+  position: absolute;
+  z-index: 12;
+  right: clamp(20px, 5vw, 70px);
+  top: 14vh;
+  text-align: right;
+}
+.ab-acts b {
+  display: block;
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ab-warm);
+}
+.ab-acts span {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: rgba(243, 235, 221, 0.85);
+}
+.ab-acts i {
+  display: block;
+  margin-top: 8px;
+  font: 500 10px var(--mono);
+  font-style: normal;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(243, 235, 221, 0.55);
+}
+.ab-ticks {
+  position: absolute;
+  z-index: 12;
+  right: clamp(20px, 5vw, 70px);
+  bottom: 10vh;
+  display: flex;
+  gap: 8px;
+}
+.ab-ticks u {
+  display: block;
+  width: 34px;
+  height: 2px;
+  overflow: hidden;
+  background: rgba(243, 235, 221, 0.25);
+}
+.ab-ticks b {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--ab-gold);
+}
+.ab-caption {
+  position: absolute;
+  z-index: 12;
+  left: clamp(20px, 7vw, 110px);
+  bottom: 13vh;
+  max-width: 31rem;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.ab-caption.is-on {
+  opacity: 1;
+  transform: none;
+}
+.ab-caption__k {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ab-warm);
+}
+.ab-caption h2 {
+  margin-top: 10px;
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(2.4rem, 5vw, 4.4rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.ab-caption h2 em {
+  color: var(--ab-coral);
+}
+.ab-caption p:last-child {
+  margin-top: 14px;
+  font-size: 17px;
+  line-height: 1.55;
+  color: rgba(243, 235, 221, 0.86);
+}
+
+@media (max-width: 900px) {
+  .ab-open {
+    height: auto;
+    min-height: 100svh;
+  }
+  .ab-hero {
+    position: relative;
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 1.6rem;
+    padding: 6.5rem 20px 4.5rem;
+  }
+  .ab-arch {
+    height: 30vh;
+    justify-self: end;
+    order: -1;
+  }
+  .ab-gilt {
+    left: 50%;
+    top: 36%;
+    width: 56vw;
+  }
+  .ab-plaque {
+    left: 50%;
+    top: calc(36% + 35vw);
+  }
+  .ab-caption {
+    right: 20px;
+  }
+  .ab-acts {
+    top: 11vh;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ab-hero__text > *,
+  .ab-arch,
+  .ab-caption {
+    transition: none;
+  }
+}
+
+/* the spacing these sections used to get from an old global "section" rule (globals.css),
+   now set here so that rule could go: 3rem, 6rem from 768px, 8rem from 1024px */
+:where(section.ab-open, section.ab-court) {
+  width: 100%;
+  padding-block: 3rem;
+}
+@media (min-width: 768px) {
+  :where(section.ab-open, section.ab-court) {
+    padding-block: 6rem;
+  }
+}
+@media (min-width: 1024px) {
+  :where(section.ab-open, section.ab-court) {
+    padding-block: 8rem;
+  }
+}
+
+/* portrait phones: the centre strip of each painting at full height, which is all a tall,
+   narrow screen shows of it anyway: just as sharp, under half the weight */
+@media (max-width: 760px) and (orientation: portrait) {
+  .ab-loader__bg {
+    background-image: url(/opt/about/fountain-sm.webp);
+  }
+  .ab-open__bg {
+    background-image: url(/opt/about/golden-sm.webp);
+  }
+  .ab-light {
+    background-image: var(--img-sm, var(--img));
+  }
+}

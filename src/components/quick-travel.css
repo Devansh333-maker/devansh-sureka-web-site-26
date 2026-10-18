@@ -1,0 +1,170 @@
+/* quick travel: a search box that jumps anywhere */
+.qt {
+  position: fixed;
+  inset: 0;
+  z-index: 700; /* above everything, full-size viewers included */
+  display: grid;
+  justify-items: center;
+  align-items: start;
+  padding: min(16vh, 140px) 16px 16px;
+  background: rgba(20, 17, 15, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: qt-fade 0.18s ease both;
+}
+.qt-box {
+  width: min(560px, 100%);
+  max-height: min(70vh, 560px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #fbf7f0;
+  color: #14110f;
+  border: 1px solid rgba(20, 17, 15, 0.12);
+  border-radius: 14px;
+  box-shadow: 0 30px 80px -30px rgba(20, 17, 15, 0.6);
+  animation: qt-rise 0.25s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+.qt-search {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid rgba(20, 17, 15, 0.08);
+}
+.qt-search__icon {
+  font-size: 18px;
+  color: #c2402a;
+}
+.qt-search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 16px;
+  color: inherit;
+}
+.qt kbd {
+  display: inline-block;
+  min-width: 1.6em;
+  padding: 0.05em 0.4em;
+  margin: 0 0.1em;
+  border: 1px solid rgba(20, 17, 15, 0.18);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  text-align: center;
+  color: #5a4d42;
+  background: #fff;
+}
+.qt-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.4rem;
+  overflow-y: auto;
+}
+.qt-group {
+  margin: 0.6rem 0.6rem 0.3rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #c2402a;
+}
+.qt-list button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.6rem 0.7rem;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.qt-list button.is-active {
+  background: rgba(194, 64, 42, 0.09);
+}
+.qt-label {
+  font-family: var(--font-display), serif;
+  font-size: 17px;
+}
+.qt-hint {
+  flex: none;
+  max-width: 55%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  /* a touch deeper: it also sits on the chosen row's tint (AA) */
+  color: #736559;
+}
+.qt-empty {
+  padding: 1rem;
+  color: #7a6b5e;
+}
+.qt-foot {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0.6rem 1rem;
+  border-top: 1px solid rgba(20, 17, 15, 0.08);
+  font-size: 11px;
+  color: #7a6b5e;
+}
+/* the search chip in the headers */
+.qt-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.55rem 0.35rem 0.7rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 13px;
+  opacity: 0.75;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.qt-chip:hover {
+  opacity: 1;
+}
+.qt-chip kbd {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  opacity: 0.9;
+}
+@media (max-width: 760px) {
+  .qt-foot {
+    display: none;
+  }
+  .qt-chip {
+    display: none;
+  }
+}
+@keyframes qt-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes qt-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .qt,
+  .qt-box {
+    animation: none;
+  }
+}

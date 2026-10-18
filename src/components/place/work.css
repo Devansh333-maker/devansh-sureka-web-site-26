@@ -1,0 +1,229 @@
+/* ── Work: the profile card in the hero ── */
+.w-card {
+  display: grid;
+  max-width: 22rem;
+  margin-left: auto;
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  background: var(--bg-2);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+}
+.w-card__photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 0.95;
+  object-fit: cover;
+  object-position: 50% 25%;
+  border-radius: 14px 14px 0 0;
+}
+.w-card__body {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1.1rem 1.2rem 1.25rem;
+}
+.w-card__name {
+  margin: 0;
+  font-family: var(--display), serif;
+  font-size: 1.5rem;
+  line-height: 1.1;
+}
+.w-card__line {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+.w-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+}
+.w-card__primary,
+.w-card__secondary {
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.w-card__primary {
+  background: var(--ink);
+  color: var(--bg);
+}
+.w-card__primary:hover {
+  background: var(--accent);
+}
+.w-card__secondary {
+  background: transparent;
+  color: var(--ink);
+  outline: 1px solid var(--rule);
+  outline-offset: -1px;
+}
+.w-card__secondary:hover {
+  outline-color: var(--accent);
+  color: var(--accent);
+}
+@media (max-width: 900px) {
+  .w-card {
+    margin: 0;
+  }
+}
+
+/* ── case files: all six at once on a wide screen ── */
+@media (min-width: 1000px) {
+  .cases__bar,
+  .cases__hint {
+    display: none;
+  }
+  .cases__track {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow: visible;
+  }
+  .case {
+    min-height: 360px;
+  }
+}
+
+/* ── the roles list: filters on top ── */
+.archive__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.6rem;
+}
+.archive__filters button {
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.archive__filters button span {
+  margin-left: 0.3rem;
+  font-family: var(--mono), monospace;
+  font-size: 11px;
+  color: var(--muted);
+}
+.archive__filters button:hover {
+  border-color: var(--accent);
+}
+.archive__filters button.is-on {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+.archive__filters button.is-on span {
+  color: inherit;
+  opacity: 0.7;
+}
+.w-hello {
+  background: none;
+  padding: 0 0 2px;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+}
+
+/* ── education ── */
+.w-edu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  border-top: 1px solid var(--rule);
+}
+.w-edu li {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: 1.3rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.w-edu__when {
+  margin: 0.3rem 0 0;
+  font-family: var(--mono), monospace;
+  font-size: 12px;
+  color: var(--muted);
+}
+.w-edu h3 {
+  margin: 0;
+  font-family: var(--display), serif;
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+.w-edu li p:not(.w-edu__when) {
+  margin: 0.3rem 0 0;
+  font-size: 14.5px;
+  color: var(--muted);
+}
+
+/* ── skills and certifications ── */
+.w-skills {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+.w-skills h3,
+.w-certs h3 {
+  margin: 0 0 0.8rem;
+  font-family: var(--mono), monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.w-skills ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+.w-skills li {
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: 13.5px;
+}
+.w-certs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2.8rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+}
+.w-certs ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+  font-size: 15px;
+}
+.w-certs strong {
+  font-weight: 500;
+}
+@media (max-width: 900px) {
+  .w-skills {
+    grid-template-columns: 1fr 1fr;
+  }
+  .w-certs {
+    grid-template-columns: 1fr;
+  }
+  .w-edu li {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+}
+@media (max-width: 520px) {
+  .w-skills {
+    grid-template-columns: 1fr;
+  }
+}

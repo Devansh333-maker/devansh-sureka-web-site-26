@@ -1,0 +1,81 @@
+/* Ahmedabad's IDF curves */
+.idf {
+  margin: 0;
+}
+.idf svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.idf__grid {
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+.idf__tick,
+.idf__axis {
+  font-family: var(--mono), monospace;
+  font-size: 11px;
+  fill: var(--muted);
+}
+.idf__axis {
+  letter-spacing: 0.06em;
+}
+.idf__curve polyline {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.2;
+  stroke-linejoin: round;
+}
+.idf__curve circle {
+  fill: var(--bg);
+  stroke: var(--accent);
+  stroke-width: 1.6;
+}
+.idf__curve text {
+  font-family: var(--mono), monospace;
+  font-size: 11px;
+  fill: var(--ink);
+}
+/* rarer storms in the strongest colour, frequent ones fading out */
+.idf__curve--1 polyline,
+.idf__curve--1 circle {
+  stroke-opacity: 0.75;
+}
+.idf__curve--2 polyline,
+.idf__curve--2 circle {
+  stroke-opacity: 0.5;
+}
+.idf__curve--3 polyline,
+.idf__curve--3 circle {
+  stroke-opacity: 0.32;
+}
+.idf__note line {
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+.idf__note text {
+  font-size: 12.5px;
+  fill: var(--ink);
+}
+.idf figcaption {
+  margin-top: 0.8rem;
+  font-size: 13px;
+  color: var(--muted);
+}
+@media (max-width: 640px) {
+  .idf__tick,
+  .idf__axis,
+  .idf__curve text {
+    font-size: 19px;
+  }
+  .idf__note text {
+    font-size: 20px;
+  }
+}
+.idf-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.8rem;
+  margin-top: 2rem;
+}

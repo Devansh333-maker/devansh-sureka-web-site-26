@@ -1,0 +1,233 @@
+{
+ "slug": "pdc-freshers",
+ "title": "Freshers event operations",
+ "kind": "Operations plan",
+ "context": "An operations task: planning a freshers' party for incoming students at BITS Pilani.",
+ "summary": "I planned a freshers' party at BITS Pilani end to end: what happens at the event, where it is held, a week-by-week preparation timeline, the budget, team structure and milestones. The plan also covers a backup venue, sponsorship and a ₹250 ticket to fund it.",
+ "points": [
+  "Total estimated budget of ₹130,000, with ₹60,000 for food for 500-700 students.",
+  "Preparation starts four weeks out, with six milestones from team formation to event day.",
+  "Six teams of 2-6 members each, from event coordination to security."
+ ],
+ "mode": "text",
+ "body": [
+  {
+   "h": "Event plan overview"
+  },
+  {
+   "p": "**Event components**"
+  },
+  {
+   "list": [
+    "**Mixer:** an informal session where freshers can meet their batchmates and seniors, promoting interactions and building connections.",
+    "**Entertainment:** performances from senior students (music, dance, stand-up comedy), games and a DJ party.",
+    "**Introductions:** clubs and departments introduce themselves, plus a \"Freshers' Talent Showcase\" where juniors are given tasks to show their talents.",
+    "**Refreshments:** a buffet with snacks, drinks and desserts."
+   ]
+  },
+  {
+   "h": "Venue selection"
+  },
+  {
+   "list": [
+    "**Main Auditorium:** main stage for performances and entertainment.",
+    "**Rotunda:** space for networking, games and food stalls."
+   ]
+  },
+  {
+   "p": "**Amenities:** sound system and lighting for performances, food stalls or a buffet arrangement, and seating for mingling and conversations."
+  },
+  {
+   "p": "**Backup plan:** in case of bad weather or any unforeseen circumstances, move the entire event indoors to the Auditorium and IC."
+  },
+  {
+   "h": "Scheduling and timeline"
+  },
+  {
+   "p": "**Event date:** two weeks after the start of the semester."
+  },
+  {
+   "table": {
+    "head": [
+     "When",
+     "Tasks"
+    ],
+    "rows": [
+     [
+      "4 weeks before",
+      "**Team formation:** identify and assign roles (event coordinators, marketing, logistics, tech, finance). **Finalise venue:** confirm bookings for the Auditorium and Rotunda with the administration. **Collabouration:** bring in the clubs needed for the event (Technical, FMaC, etc.). **Theme:** finalise the event theme and overall vibe. **Budget approval:** get the proposed budget approved by the administration."
+     ],
+     [
+      "3 weeks before",
+      "**Vendor coordination:** finalise vendors for sound, lighting, catering and decor. **Marketing campaign:** start promotions via social media, posters and word of mouth; open registration for performances and talent showcases. **Event itinerary:** finalise the schedule of performances, games and activities."
+     ],
+     [
+      "2 weeks before",
+      "**Decor planning:** finalise decor details in line with the theme."
+     ],
+     [
+      "1 week before",
+      "**Tech and logistics check:** rehearsals for performances, final sound and lighting checks. **Final marketing push:** continue promotions to maximise participation. **Security:** coordinate with campus security for safety and crowd management."
+     ],
+     [
+      "Day before",
+      "**Set-up:** begin venue set-up with decor, seating and food stalls. **Final rehearsal:** last-minute checks and a run-through of the event plan. **Team briefing:** final meeting to review roles and tasks for the day."
+     ]
+    ]
+   }
+  },
+  {
+   "h": "Budget breakdown"
+  },
+  {
+   "p": "**Total estimated budget:** ₹130,000"
+  },
+  {
+   "table": {
+    "head": [
+     "Head",
+     "Amount",
+     "Covers"
+    ],
+    "rows": [
+     [
+      "Venue and logistics",
+      "₹10,000",
+      "Sound system, lighting and technical support"
+     ],
+     [
+      "Decor",
+      "₹20,000",
+      "Themed decor for the networking and entertainment areas; branding materials, posters and standees"
+     ],
+     [
+      "Food and beverages",
+      "₹60,000",
+      "Buffet and snacks for 500-700 students; soft drinks and water"
+     ],
+     [
+      "Entertainment",
+      "₹25,000",
+      "DJ; prizes for games and competitions"
+     ],
+     [
+      "Marketing and promotions",
+      "₹5,000",
+      "Posters, social media campaigns and registration platform"
+     ],
+     [
+      "Miscellaneous",
+      "₹10,000",
+      "Emergency funds for last-minute expenses; security, transport and coordination"
+     ]
+    ]
+   }
+  },
+  {
+   "p": "**Sponsorship opportunities**"
+  },
+  {
+   "list": [
+    "Reach out to local businesses (cafes, food brands) or tech companies for sponsorship in exchange for branding during the event.",
+    "Make it a ticketed event, charging freshers ₹250 each."
+   ]
+  },
+  {
+   "h": "Resource allocation"
+  },
+  {
+   "table": {
+    "head": [
+     "Team",
+     "Size",
+     "Role"
+    ],
+    "rows": [
+     [
+      "Event coordination",
+      "5-6 members",
+      "Oversees all aspects of the event and ensures seamless execution"
+     ],
+     [
+      "Marketing",
+      "3-4 members",
+      "Handles promotions, registration and social media engagement"
+     ],
+     [
+      "Logistics and tech",
+      "4-5 members",
+      "Manages set-up, sound, lighting and technical needs"
+     ],
+     [
+      "Food and catering",
+      "3-4 members",
+      "Coordinates with vendors and manages food and beverages"
+     ],
+     [
+      "Entertainment and activities",
+      "4-5 members",
+      "Organises performances, games and the DJ set-up"
+     ],
+     [
+      "Security",
+      "2-3 members",
+      "Coordinates with campus security and makes sure safety protocols are followed"
+     ]
+    ]
+   }
+  },
+  {
+   "h": "Key milestones and deadlines"
+  },
+  {
+   "table": {
+    "head": [
+     "Milestone",
+     "When"
+    ],
+    "rows": [
+     [
+      "1. Team formation",
+      "4 weeks before"
+     ],
+     [
+      "2. Venue and budget approval",
+      "4 weeks before"
+     ],
+     [
+      "3. Vendor finalisation",
+      "3 weeks before"
+     ],
+     [
+      "4. Marketing campaign launch",
+      "3 weeks before"
+     ],
+     [
+      "5. Final rehearsals and set-up",
+      "1 week before"
+     ],
+     [
+      "6. Event execution",
+      "Event day"
+     ]
+    ]
+   }
+  },
+  {
+   "h": "Practicality and feasibility"
+  },
+  {
+   "list": [
+    "**Venue:** campus spaces like the Auditorium and Rotunda are easily accessible and have adequate capacity.",
+    "**Budget:** with student and sponsor funding, the budget is realistic and manageable. Most of the spend goes on venue logistics, food and entertainment, which keeps quality high while staying within limits.",
+    "**Team coordination:** a clear division of roles and firm deadlines will keep execution smooth, with regular team meetings to keep everyone on track."
+   ]
+  },
+  {
+   "h": "Conclusion"
+  },
+  {
+   "p": "The Freshers Party balances fun with chances for networking and community-building. With a clear timeline, budget and resource allocation, the plan gives every fresher an enjoyable experience and helps them start their BITS Pilani journey on a positive note."
+  }
+ ]
+}

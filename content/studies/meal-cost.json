@@ -1,0 +1,102 @@
+{
+ "slug": "meal-cost",
+ "title": "Cost optimisation in meal production",
+ "kind": "Project synopsis",
+ "context": "A project synopsis for the Akshaya Patra Foundation's mid-day meal kitchen in Jaipur.",
+ "summary": "I scoped a project to find where money is lost in producing and delivering Akshaya Patra's mid-day meals, piloted in the Jaipur kitchen. The synopsis sets out the why, where, when, who and how, and estimates what a 5% saving per meal would be worth.",
+ "points": [
+  "Akshaya Patra serves over 2 million meals a day, so small inefficiencies add up.",
+  "Target: a 5% cost reduction per meal over a 6-8 week project.",
+  "At 100,000 meals a day and ₹50 a meal, that is ₹250,000 saved daily."
+ ],
+ "mode": "text",
+ "body": [
+  {
+   "h": "What the project is about"
+  },
+  {
+   "p": "This project aims to analyse and optimise the costs involved in producing and delivering mid-day meals at the Akshaya Patra Foundation. It will identify inefficiencies and recommend data-driven, practical cost-saving strategies across the meal production supply chain."
+  },
+  {
+   "h": "Why it matters"
+  },
+  {
+   "list": [
+    "Akshaya Patra serves over 2 million meals daily, so even minor inefficiencies can lead to significant cost overruns.",
+    "Cost savings can be reinvested to reach more children or improve meal quality.",
+    "Donors and CSR partners increasingly demand evidence of cost efficiency and impact."
+   ]
+  },
+  {
+   "h": "Where"
+  },
+  {
+   "p": "The project will be piloted in **Jaipur's kitchen** to account for regional cost variations. Insights can later be scaled to other kitchens across India."
+  },
+  {
+   "h": "When"
+  },
+  {
+   "p": "**Project duration:** 6-8 weeks"
+  },
+  {
+   "table": {
+    "head": [
+     "Weeks",
+     "Work"
+    ],
+    "rows": [
+     [
+      "1-2",
+      "Data collection on the nearest vendors and production capacity"
+     ],
+     [
+      "3-4",
+      "Process mapping and cost benchmarking"
+     ],
+     [
+      "5-6",
+      "Analysis and identification of cost drivers"
+     ],
+     [
+      "7-8",
+      "Recommendations and report preparation"
+     ]
+    ]
+   }
+  },
+  {
+   "h": "Who is involved"
+  },
+  {
+   "list": [
+    "**Project intern / analyst:** leads the analysis and reporting",
+    "**Kitchen operations manager:** provides on-ground insights and data",
+    "**Finance and procurement teams:** support access to financial and vendor data",
+    "**Mentor / adviser:** from Akshaya Patra's central finance or strategy team"
+   ]
+  },
+  {
+   "h": "How it will be done"
+  },
+  {
+   "list": [
+    "Process mapping of procurement, cooking and logistics",
+    "Cost breakdown analysis (raw material, labour, utilities, transport)",
+    "Interviews with key staff for qualitative insights",
+    "Identifying quick wins, such as bulk procurement and route optimisation",
+    "A cost-saving recommendations report"
+   ]
+  },
+  {
+   "h": "Estimated impact"
+  },
+  {
+   "list": [
+    "Expected cost reduction: **5% per meal**",
+    "For a kitchen serving 100,000 meals daily at ₹50 a meal, this could mean savings of ₹250,000 per day",
+    "Long-term impact: greater efficiency, scalability and donor confidence"
+   ]
+  }
+ ]
+}

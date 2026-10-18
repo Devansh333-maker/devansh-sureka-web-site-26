@@ -1,0 +1,4 @@
+(retired, kept in assets-src/legacy) guide.glb: 'Casual Character' from the Ultimate Modular Men Pack by Quaternius (quaternius.com), via poly.pizza/m/kZ3DmIoGip. License: CC0 1.0 (public domain).
+
+avatar/devansh-(retired, kept in assets-src/legacy) guide.glb: Devansh's own avatar, created by him on Avaturn (avaturn.me) from his selfies.
+anim/mixamo-clips.glb: 'Xbot.glb' from the three.js examples (github.com/mrdoob/three.js, MIT); motion from Mixamo. Used for its animation clips only.

@@ -1,0 +1,135 @@
+/* a role, told the same way every time */
+.role {
+  display: grid;
+  gap: clamp(1.6rem, 3.5vw, 2.6rem);
+}
+.role__card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.1rem 1.4rem;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--bg-2);
+}
+.role__mono {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--display), serif;
+  font-size: 22px;
+  letter-spacing: 0.02em;
+}
+.role__org {
+  margin: 0;
+  font-family: var(--mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.role__title {
+  margin: 0.2rem 0 0;
+  font-family: var(--display), serif;
+  font-weight: 400;
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  line-height: 1.15;
+}
+.role__facts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.45rem;
+}
+.role__facts li {
+  padding: 0.25rem 0.7rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: 12.5px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.role__brief {
+  max-width: 62ch;
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  line-height: 1.6;
+}
+.role__brief p {
+  margin: 0;
+}
+.role__did {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--rule);
+}
+.role__did li {
+  display: grid;
+  align-content: start;
+  gap: 0.55rem;
+  padding: 1.4rem 1.3rem 1.5rem;
+  background: var(--bg);
+}
+.role__did span {
+  font-family: var(--mono), monospace;
+  font-size: 11px;
+  color: var(--accent);
+}
+.role__did h4 {
+  margin: 0;
+  font-family: var(--display), serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+.role__did div {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.role__did strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+.role__numbers {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem clamp(2rem, 6vw, 4.5rem);
+}
+.role__numbers dt {
+  font-family: var(--display), serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1;
+}
+.role__numbers dd {
+  margin: 0.35rem 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+@media (max-width: 860px) {
+  .role__card {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .role__facts {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+  .role__did {
+    grid-template-columns: 1fr;
+  }
+}

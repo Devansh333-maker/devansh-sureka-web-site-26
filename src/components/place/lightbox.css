@@ -1,0 +1,97 @@
+/* a design full size, over everything */
+.lb {
+  position: fixed;
+  inset: 0;
+  height: 100dvh;
+  z-index: 600; /* over the floating sound and motion buttons too */
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  padding: 4vh 4vw 2.5vh;
+  gap: 1rem;
+  background: rgba(10, 9, 14, 0.92);
+  backdrop-filter: blur(6px);
+  animation: lb-in 0.3s ease both;
+}
+.lb__scroll {
+  display: grid;
+  place-items: center;
+  min-height: 0;
+}
+.lb__scroll img {
+  max-width: 100%;
+  /* leaves room for the counter and arrows underneath */
+  max-height: calc(100vh - 4vh - 2.5vh - 1rem - 44px - 2rem);
+  max-height: calc(100dvh - 4dvh - 2.5dvh - 1rem - 44px - 2rem); /* phones: the visible height */
+  border-radius: 8px;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6);
+  animation: lb-in 0.25s ease both;
+}
+/* a long sheet: as wide as it can comfortably be, scrolled down */
+.lb.is-tall .lb__scroll {
+  display: block;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  text-align: center;
+}
+.lb.is-tall .lb__scroll img {
+  width: min(1100px, 100%);
+  max-height: none;
+  border-radius: 4px;
+}
+.lb__bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+}
+.lb__bar p {
+  margin: 0;
+  max-width: 60ch;
+  text-align: center;
+  font-family: var(--mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+.lb__bar p span {
+  margin-right: 0.9rem;
+  color: #f0794f;
+}
+.lb__btn,
+.lb__close {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.lb__btn:hover,
+.lb__close:hover {
+  background: rgba(240, 121, 79, 0.2);
+  border-color: #f0794f;
+}
+.lb__close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+}
+@keyframes lb-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lb,
+  .lb__scroll img {
+    animation: none;
+  }
+}

@@ -1,0 +1,105 @@
+/* 404: an empty square of the survey sheet */
+.lost {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: 7rem clamp(1rem, 5vw, 3rem) 4rem;
+  background: radial-gradient(120% 90% at 55% 45%, #f8f0e1 0%, #efe1c8 55%, #e2cba6 100%);
+  color: #14110f;
+}
+.lost .survey__title,
+.lost .survey__bm {
+  display: none;
+}
+.lost__inner {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  max-width: 40rem;
+}
+.lost__kicker {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #c2402a;
+}
+.lost__title {
+  margin: 0.8rem 0 1.6rem;
+  font-family: var(--font-display), serif;
+  font-weight: 330;
+  font-size: clamp(2.4rem, 6vw, 4.4rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.lost__title em {
+  font-style: italic;
+  color: #c2402a;
+}
+.lost__say {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  max-width: 100%;
+  padding: 0.7rem 1rem 0.7rem 0.7rem;
+  background: rgba(251, 247, 240, 0.92);
+  border: 1px solid rgba(20, 17, 15, 0.12);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px -14px rgba(20, 17, 15, 0.4);
+}
+.lost__say p {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--font-display), serif;
+  font-size: 16px;
+  line-height: 1.35;
+}
+.lost__say span {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #c2402a;
+}
+.lost__home {
+  display: inline-block;
+  margin-top: 1.8rem;
+  padding: 0.8rem 1.3rem;
+  border-radius: 999px;
+  background: #14110f;
+  color: #f3ebdd;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+.lost__home:hover {
+  transform: translateY(-2px);
+}
+.lost__places {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.2rem 1.5rem;
+  margin: 2.2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.lost__places a {
+  display: flex;
+  gap: 0.6rem;
+  padding: 0.45rem 0;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(20, 17, 15, 0.1);
+}
+.lost__places a:hover {
+  color: #c2402a;
+}
+.lost__places span {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: #c2402a;
+  padding-top: 0.2rem;
+}

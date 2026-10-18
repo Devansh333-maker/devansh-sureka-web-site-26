@@ -1,0 +1,387 @@
+/* A little cartoon me walking the page: a track along the bottom (the page's progress),
+   me on it, and what I'm saying above my head */
+.pg {
+  --m: 190px; /* kept clear at each side, matches margin() in PageGuide */
+  position: fixed;
+  z-index: 40;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0;
+  pointer-events: none;
+}
+.pg__track,
+.pg-me,
+.pg__say {
+  transition: opacity 0.5s ease, translate 0.5s ease;
+}
+.pg.is-away .pg__track,
+.pg.is-away .pg-me,
+.pg.is-away .pg__say {
+  opacity: 0;
+  translate: 0 24px;
+}
+.pg__track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 24px;
+  height: 2px;
+}
+.pg__track::before {
+  content: '';
+  position: absolute;
+  left: var(--m);
+  right: var(--m);
+  top: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--ink) 16%, transparent);
+}
+.pg__fill {
+  position: absolute;
+  left: var(--m);
+  right: var(--m);
+  top: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  transform-origin: left;
+}
+.pg__track b {
+  position: absolute;
+  top: -3px;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  border-radius: 50%;
+  background: var(--bg);
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--ink) 30%, transparent);
+  transition: box-shadow 0.3s, background 0.3s;
+}
+.pg__track b.is-past {
+  background: var(--accent);
+  box-shadow: none;
+}
+/* how far through the page, under my feet */
+.pg__pct {
+  position: absolute;
+  top: 5px;
+  translate: -50% 0;
+  font-family: var(--mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  color: color-mix(in srgb, var(--ink) 55%, transparent);
+}
+
+/* me */
+.pg-me {
+  position: absolute;
+  left: 0;
+  bottom: 25px;
+  width: 0;
+  will-change: transform;
+}
+.pg-me__body {
+  position: absolute;
+  bottom: 0;
+  left: -22px;
+  width: 44px;
+  height: 76px;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25));
+  transition: transform 0.25s ease;
+}
+.pg-me__body.is-left {
+  transform: scaleX(-1);
+}
+.pg-me__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.pg-me__svg * {
+  transform-box: fill-box;
+}
+.pg-me__shadow {
+  fill: rgba(0, 0, 0, 0.28);
+}
+/* idle: breathe, blink, look about */
+.pg-me__head {
+  transform-origin: 50% 100%;
+  animation: pg-breathe 3.2s ease-in-out infinite;
+}
+@keyframes pg-breathe {
+  50% {
+    transform: translateY(0.6px) rotate(-1.5deg);
+  }
+}
+.pg-me__eyes {
+  transform-origin: center;
+  animation: pg-blink 4.6s infinite;
+}
+@keyframes pg-blink {
+  0%,
+  93%,
+  100% {
+    transform: scaleY(1);
+  }
+  96% {
+    transform: scaleY(0.1);
+  }
+}
+.pg-me__mouth {
+  transform-origin: center;
+}
+.pg-me__mouth.is-talking {
+  animation: pg-talk 0.22s ease-in-out infinite alternate;
+}
+@keyframes pg-talk {
+  to {
+    transform: scale(0.85, 2.1);
+  }
+}
+/* walking: a proper gait. Thighs swing from the hip, knees bend as each foot comes through,
+   arms swing against the legs, the body rises over each step and I lean into the walk.
+   The cycle never stops; how much of it shows (--amp) eases between 0 and 1, so I start and
+   stop walking smoothly instead of snapping into a pose. */
+@property --amp {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+.pg-me__body {
+  --amp: 0;
+  --pace: 0.62s;
+  transition: --amp 0.28s ease, transform 0.25s ease;
+}
+.pg-me__body.is-walking {
+  --amp: 1;
+}
+.pg-me__thigh,
+.pg-me__shin {
+  transform-origin: 50% 0%;
+}
+.pg-me__arm {
+  transform-origin: 50% 6%;
+}
+.pg-me__svg {
+  transform-origin: 50% 100%;
+  transform: rotate(calc(var(--amp) * 3deg));
+}
+.pg-me__face {
+  transform: translateX(calc(var(--amp) * 2.4px));
+}
+.pg-me__bob {
+  animation: pg-bob calc(var(--pace) / 2) ease-in-out infinite;
+}
+.pg-me__thigh {
+  animation: pg-thigh var(--pace) ease-in-out infinite;
+}
+.pg-me__shin {
+  animation: pg-shin var(--pace) linear infinite;
+}
+.pg-me__thigh--b,
+.pg-me__thigh--b .pg-me__shin,
+.pg-me__arm--b {
+  animation-delay: calc(var(--pace) / -2);
+}
+.pg-me__arm {
+  animation: pg-arm var(--pace) ease-in-out infinite;
+}
+.pg-me__arm--b {
+  animation-delay: calc(var(--pace) / -2);
+}
+@keyframes pg-thigh {
+  0%,
+  100% {
+    transform: rotate(calc(var(--amp) * -19deg));
+  }
+  50% {
+    transform: rotate(calc(var(--amp) * 17deg));
+  }
+}
+@keyframes pg-shin {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(calc(var(--amp) * 5deg));
+  }
+  55% {
+    transform: rotate(calc(var(--amp) * 20deg));
+  }
+  70% {
+    transform: rotate(calc(var(--amp) * 46deg));
+  }
+  86% {
+    transform: rotate(calc(var(--amp) * 16deg));
+  }
+}
+@keyframes pg-arm {
+  0%,
+  100% {
+    transform: rotate(calc(var(--amp) * 17deg));
+  }
+  50% {
+    transform: rotate(calc(var(--amp) * -17deg));
+  }
+}
+@keyframes pg-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(calc(var(--amp) * -2.2px));
+  }
+}
+/* something new to carry: it pops into my hand */
+.pg-me__prop {
+  transform-origin: center;
+  animation: pg-pop 0.45s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+@keyframes pg-pop {
+  from {
+    transform: scale(0);
+  }
+}
+/* when I start talking, a little wave */
+.pg-me__body.is-talking:not(.is-walking) .pg-me__arm--f {
+  animation: pg-wave 0.5s ease-in-out 3 alternate;
+}
+@keyframes pg-wave {
+  from {
+    transform: rotate(-150deg);
+  }
+  to {
+    transform: rotate(-120deg);
+  }
+}
+
+/* what I'm saying */
+.pg__say {
+  position: absolute;
+  left: 0;
+  bottom: 34px;
+  width: max-content;
+  max-width: min(300px, calc(100vw - 24px));
+  padding: 0.6rem 0.85rem 0.7rem;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(8px);
+  color: var(--ink);
+  box-shadow: 0 16px 36px -18px rgba(0, 0, 0, 0.5), 0 0 0 1px color-mix(in srgb, var(--ink) 12%, transparent);
+  font-size: 13px;
+  line-height: 1.45;
+  transform-origin: var(--tail, 50%) 100%;
+  transition: max-width 0.3s ease, padding 0.3s ease, border-radius 0.3s ease;
+}
+.pg__say::after {
+  content: '';
+  position: absolute;
+  bottom: 18px;
+  border: 6px solid transparent;
+}
+.pg__say[data-side='r']::after {
+  left: -6px;
+  border-right-color: color-mix(in srgb, var(--bg) 92%, transparent);
+  border-left: 0;
+}
+.pg__say[data-side='l']::after {
+  right: -6px;
+  border-left-color: color-mix(in srgb, var(--bg) 92%, transparent);
+  border-right: 0;
+}
+.pg__say.is-resting p {
+  display: none;
+}
+.pg__say.is-resting .pg__kicker {
+  margin: 0;
+}
+.pg__kicker {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-family: var(--mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.pg__say p {
+  margin: 0;
+}
+.pg__say p i {
+  font-style: normal;
+  opacity: 0;
+}
+/* while I walk, the bubble shrinks to a "…" and fills again when I stop */
+.pg__dots {
+  display: none;
+  gap: 4px;
+  padding: 2px 0;
+}
+.pg__dots i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ink) 55%, transparent);
+  animation: pg-dot 0.9s ease-in-out infinite;
+}
+.pg__dots i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.pg__dots i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes pg-dot {
+  50% {
+    transform: translateY(-3px);
+    opacity: 0.4;
+  }
+}
+.pg__say {
+  transition: opacity 0.4s ease, translate 0.4s ease;
+}
+.pg__say.is-quiet {
+  opacity: 0;
+  translate: 0 8px;
+}
+.pg__say.is-hushed {
+  padding: 0.45rem 0.7rem;
+  border-radius: 12px;
+}
+.pg__say.is-hushed .pg__kicker,
+.pg__say.is-hushed p {
+  display: none;
+}
+.pg__say.is-hushed .pg__dots {
+  display: flex;
+}
+
+@media (max-width: 699px) {
+  /* on a phone: edge to edge, riding above the floating buttons */
+  .pg {
+    --m: 36px;
+    bottom: 64px;
+  }
+}
+@media (max-width: 700px) {
+  .pg-me__body {
+    left: -18px;
+    width: 36px;
+    height: 62px;
+  }
+  .pg__say {
+    bottom: 30px;
+    max-width: min(240px, calc(100vw - 24px));
+    font-size: 12.5px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pg-me__svg,
+  .pg-me__svg * {
+    animation: none !important;
+  }
+}

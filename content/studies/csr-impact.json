@@ -1,0 +1,107 @@
+{
+ "slug": "csr-impact",
+ "title": "Impact assessment of CSR contributions",
+ "kind": "CSR impact assessment",
+ "context": "A project synopsis for the Akshaya Patra Foundation on measuring the impact of the CSR funding it receives, based on its Jaipur kitchen.",
+ "summary": "I scoped a project to measure what CSR money actually achieves at Akshaya Patra's Jaipur kitchen, so corporate donors can see the value of each rupee. The synopsis covers the plan week by week, the people involved, the method (KPIs, logic models, surveys and SROI) and the expected output.",
+ "points": [
+  "Profiles 3-4 CSR-funded projects over a 6-8 week study.",
+  "Uses logic models, surveys, case studies and SROI to link funding to outcomes.",
+  "Previous studies suggest an SROI of 1:9 to 1:11 for mid-day meal programmes."
+ ],
+ "mode": "text",
+ "body": [
+  {
+   "h": "What the project is about"
+  },
+  {
+   "p": "This project evaluates the effectiveness and social impact of CSR contributions received by the Akshaya Patra Foundation. It aims to quantify the outcomes linked to CSR funding and produce insights that can be shared with corporate donors to improve transparency, accountability and future engagement."
+  },
+  {
+   "h": "Why it matters"
+  },
+  {
+   "list": [
+    "It shows CSR partners the **value generated per rupee spent**",
+    "It builds **donor confidence and long-term partnerships**",
+    "It helps the organisation see what works and scale effective interventions"
+   ]
+  },
+  {
+   "h": "Where"
+  },
+  {
+   "p": "The project will assess CSR-funded programmes in Jaipur's kitchen."
+  },
+  {
+   "h": "When"
+  },
+  {
+   "p": "**Project duration:** 6-8 weeks"
+  },
+  {
+   "table": {
+    "head": [
+     "Weeks",
+     "Work"
+    ],
+    "rows": [
+     [
+      "1",
+      "Identify CSR projects and gather documents"
+     ],
+     [
+      "2-3",
+      "Data collection (outputs)"
+     ],
+     [
+      "4-5",
+      "Data collection (outcomes)"
+     ],
+     [
+      "6-7",
+      "Analysis and impact mapping"
+     ],
+     [
+      "8",
+      "Final reporting and CSR presentation deck"
+     ]
+    ]
+   }
+  },
+  {
+   "h": "Who is involved"
+  },
+  {
+   "list": [
+    "**Impact analyst / intern:** leads research and analysis",
+    "**CSR relations team:** provides project details and donor contacts",
+    "**Programme implementation staff:** offer operational data and success metrics",
+    "**Donor representatives:** optional interviews for feedback and expectations",
+    "**Monitoring and evaluation team:** ensures outcome measurement is accurate"
+   ]
+  },
+  {
+   "h": "How it will be done"
+  },
+  {
+   "list": [
+    "Select and profile 3-4 CSR-funded projects",
+    "Define KPIs such as the number of children reached, attendance rate and meal quality",
+    "Apply logic models (input → output → outcome → impact)",
+    "Use tools like surveys, case studies and SROI (Social Return on Investment)",
+    "Create donor-specific **impact scorecards or visual reports**"
+   ]
+  },
+  {
+   "h": "Estimated value"
+  },
+  {
+   "list": [
+    "Each ₹1 invested by a CSR partner can be mapped to measurable social outcomes, such as better school attendance, nutrition scores or community goodwill",
+    "Based on previous studies, a **Social Return on Investment (SROI) of 1:9 to 1:11** is common for mid-day meal programmes",
+    "Output: a dashboard or report showing **cost vs. impact** for each CSR partner's contribution"
+   ]
+  }
+ ]
+}
