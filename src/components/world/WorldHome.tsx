@@ -13,8 +13,10 @@ import { PetalName } from './PetalName';
 import { IntroBar, OPENING_IMAGES, RoninHalf, RoninLive, runRonin, type RoninCtl } from './RoninIntro';
 import { Highlights } from './Highlights';
 import { ContactBlock } from './ContactBlock';
+import { StartHere } from './StartHere';
 import { OakTree } from './OakTree';
 import { preload3D } from '@/components/three/preload';
+import { AvatarPreload } from '@/components/three/AvatarPreload';
 import { useSky } from './sky';
 import { Survey } from './Survey';
 import { zones, type ZoneId } from './zones';
@@ -297,6 +299,7 @@ export function WorldHome() {
 
   return (
     <div ref={root} id="main" className="world" data-sky={sky} data-phase={phase} data-focus={zone ? "" : undefined}>
+      <AvatarPreload />
       <Survey night={sky === 'night'} />
       <OakTree />
       {/* the 3D world is a picture for pointers; keyboards and screen readers use the Places list */}
@@ -335,6 +338,7 @@ export function WorldHome() {
           </header>
 
           <section className={`hud-hero ${zone ? 'is-hidden' : ''}`} aria-label="Introduction" inert={zone ? true : undefined}>
+            {explored.length === 0 && <StartHere className="hud-reveal" />}
             <p className="hud-kicker hud-reveal">Civil engineering · BITS Pilani ’27 · Jaipur</p>
             <h1 className="hud-title">
               Devansh <em>Sureka</em>

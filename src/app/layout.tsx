@@ -20,6 +20,7 @@ import { QuickTravel } from '@/components/QuickTravel';
 import { sortedNotes } from '@/content/notebook';
 import { studies } from '@/content/studies';
 import { SITE_URL } from '@/lib/site';
+import { CONTACT } from '@/lib/contact';
 import Script from 'next/script';
 import { HEAD_SCRIPT } from '@/components/theme/headScript';
 import { FloatControls } from '@/components/motion/FloatControls';
@@ -66,7 +67,22 @@ const didone = Bodoni_Moda({ subsets: ['latin'], style: ['normal', 'italic'], va
 const mincho = EB_Garamond({ subsets: ['latin'], style: ['normal', 'italic'], variable: '--font-mincho', display: 'swap' });
 
 const DESCRIPTION =
-  'Civil engineering student at BITS Pilani who builds systems, leads people and captained the roll ball team to its first InterBITS gold. A small world of things I have made.';
+  'Civil engineering at BITS Pilani ’27. AI automation at Univest, eco-brick research, NSS Secretary across 7 villages, and captain of BITS Pilani’s first InterBITS team gold.';
+
+// Tells Google the site's name (so results say "Devansh Sureka", not "Vercel") and who it's about
+const STRUCTURED = JSON.stringify([
+  { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Devansh Sureka', alternateName: ['Devansh Sureka portfolio', 'DS'], url: `${SITE_URL}/` },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Devansh Sureka',
+    url: `${SITE_URL}/`,
+    image: `${SITE_URL}/me/formal.webp`,
+    jobTitle: 'Civil engineering student',
+    alumniOf: { '@type': 'CollegeOrUniversity', name: 'BITS Pilani' },
+    sameAs: [CONTACT.linkedin, CONTACT.github],
+  },
+]);
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -97,6 +113,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         {/* light or dark, decided before the first paint */}
         <script dangerouslySetInnerHTML={{ __html: HEAD_SCRIPT }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: STRUCTURED }} />
       </head>
       <body className="min-h-screen bg-background font-sans antialiased">
         <a href="#main" className="skip-link">

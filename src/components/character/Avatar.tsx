@@ -24,6 +24,11 @@ export const AVATARS = {
 } as const;
 export type AvatarId = keyof typeof AVATARS;
 
+// Phones get a copy with every texture at half size (1.7 MB → 0.5 MB): same model, same
+// motion, and at phone size the difference doesn't show
+const small = () => typeof window !== 'undefined' && window.matchMedia('(max-width: 760px), (hover: none) and (pointer: coarse)').matches;
+const fileFor = (id: AvatarId) => (small() ? AVATARS[id].replace('.glb', '-lite.glb') : AVATARS[id]);
+
 const CLIPS_URL = '/models/anim/mixamo-clips.glb';
 const CLIP_CACHE = new Map<Move, THREE.AnimationClip>();
 // models are Draco-compressed (4.3 MB → 1.7 MB); the decoder is served from our own /draco
@@ -95,7 +100,7 @@ export function Avatar({
   // play a habit now, e.g. { name: 'nod', key: Date.now() }
   cue?: { name: Gesture; key: number };
 } & Omit<ThreeElements['group'], 'ref'>) {
-  const { scene } = useGLTF(AVATARS[avatar], DRACO);
+  const { scene } = useGLTF(fileFor(avatar), DRACO);
   const source = useGLTF(CLIPS_URL, DRACO);
   const gl = useThree((s) => s.gl);
 
@@ -378,5 +383,5 @@ export function Avatar({
   );
 }
 
-useGLTF.preload(AVATARS.guide, DRACO);
+if (typeof window !== 'undefined') useGLTF.preload(fileFor('guide'), DRACO);
 useGLTF.preload(CLIPS_URL, DRACO);
