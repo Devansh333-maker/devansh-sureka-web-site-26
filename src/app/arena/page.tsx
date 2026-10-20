@@ -2,7 +2,7 @@ import { PageGuide } from '@/components/place/PageGuide';
 import type { Metadata } from 'next';
 import { shareMeta } from '@/lib/share';
 import Image from 'next/image';
-import { Hero, NextPlace, PlacePage, Photo, Quote, Section, Stats, Steps, Story } from '@/components/place/kit';
+import { Hero, NextPlace, PlacePage, Photo, Quote, Section, Stats, Story } from '@/components/place/kit';
 import { Reveal } from '@/components/place/reveal';
 import { ArenaFilm } from '@/components/place/film/ArenaFilmLazy';
 import { PosterPair } from '@/components/place/Designs';
@@ -35,7 +35,7 @@ export default function ArenaPage() {
         aside={<Photo src="/me/rollball-drive.webp" alt="Devansh driving past a defender with the ball on quad skates" ratio="4 / 5" priority position="42% 50%" />}
       />
 
-      <Section num="01" label="Replay" title={<>The final, <em>in motion</em></>} intro="Roll ball on quad skates, cut like an anime opening: read the play, wait for the gap, strike. Best with sound.">
+      <Section num="01" label="Replay" title={<>Roll ball, <em>in motion</em></>} intro="Roll ball on quad skates, cut like an anime opening: read the play, wait for the gap, strike. Best with sound.">
         <ArenaFilm />
       </Section>
 
@@ -53,28 +53,7 @@ export default function ArenaPage() {
         </Story>
       </Section>
 
-      <Section num="03" label="The final" title={<>InterBITS 2025: <em>the plan held</em></>}>
-        <div>
-          <Steps
-            items={[
-              {
-                title: 'Play as one team',
-                body: 'Hyderabad were the hosts and a strong side. We didn’t need a star; we needed everyone doing their job, together.',
-              },
-              {
-                title: 'Defend first',
-                body: 'We kept our shape tight and made them work for every shot, then scored whenever they gave us the space.',
-              },
-              {
-                title: 'Finish it',
-                body: 'As captain I scored and kept the team on the plan. At the final whistle we had the first team gold BITS Pilani had ever won at InterBITS.',
-              },
-            ]}
-          />
-        </div>
-      </Section>
-
-      <Section num="04" label="Captaincy" title={<>What I was really trying to win</>} tone="deep">
+      <Section num="03" label="Captaincy" title={<>What I was really trying to win</>}>
         <div className="p-split p-split--wide-left">
           <div>
             <Story>
@@ -96,17 +75,17 @@ export default function ArenaPage() {
               </p>
             </Story>
           </div>
-          <Photo src="/me/rollball-practice.webp" alt="Devansh dribbling during a practice session" ratio="3 / 2" caption="Practice. Quad skates, knee pads, the same drill a hundred times." />
+          <Photo src="/me/rollball-practice.webp" alt="Devansh dribbling during a practice session" ratio="3 / 2" />
         </div>
         <Quote by="Me, on what captaincy was for">I wanted the new players to love the game itself, not just the results.</Quote>
       </Section>
 
-      <Section num="05" label="The record" title="The record, newest first">
+      <Section num="04" label="The record" title="The record, newest first" tone="deep">
         <Stats
           items={[
             { value: 'Gold', label: 'Roll ball, InterBITS 2025', note: 'First-ever team gold for BITS Pilani' },
-            { value: 'Bronze', label: 'Roll ball, BOSM 2024' },
-            { value: 'Bronze', label: 'Speed skating & relay, BOSM 2024' },
+            { value: 'Silver', label: 'BOSM 2025', note: 'Silver in roll ball and mixed relay · bronze in inline speed skating' },
+            { value: 'Bronze', label: 'BOSM 2024', note: 'Roll ball · speed skating & relay' },
             { value: 'Silver', label: 'Roll ball, BOSM 2023' },
             { value: 'Silver', label: 'Rajasthan district skating championship, 2016' },
             { value: 'Competed', label: 'National Championships, 2017' },
@@ -114,7 +93,7 @@ export default function ArenaPage() {
         />
       </Section>
 
-      <Section num="06" label="Off the court" tone="deep" title={<>I also made the posters</>} intro="The team’s camps and trials needed people to show up, so I designed the calls: one for August, one for January.">
+      <Section num="05" label="Off the court" title={<>I also made the posters</>} intro="The team’s camps and trials needed people to show up, so I designed the calls: one for August, one for January.">
         <Reveal className="p-split">
           <PosterPair
             items={[
@@ -136,12 +115,11 @@ export default function ArenaPage() {
         lines={{
           hero: "This is the Arena: my sport, roll ball. Scroll, and I’ll walk you through it.",
           sections: {
-            '01': "Press play: our final, told like an anime opening. Turn the sound on.",
+            '01': "Press play: roll ball, told like an anime opening. Turn the sound on.",
             '02': "Roll ball in one line: basketball’s hands and handball’s goals, played on roller skates.",
-            '03': "How we won the InterBITS 2025 final in Hyderabad: we made a plan, and it held.",
-            '04': "As captain I built the team: a girls’ team and three boys’ teams for the first time, a coach, and a system that keeps the order.",
-            '05': "Our results, newest first, starting with BITS Pilani’s first-ever team gold.",
-            '06': "I also designed the posters for our camps and trials.",
+            '03': "As captain I built the team: a girls’ team and three boys’ teams for the first time, a coach, and a system that keeps the order.",
+            '04': "Our results, newest first, starting with BITS Pilani’s first-ever team gold.",
+            '05': "I also designed the posters for our camps and trials.",
           },
           end: "That’s everything on this page. Scroll a bit more to visit the next place.",
           kit: 'medal',
