@@ -32,7 +32,7 @@ const ROLES: RoleRow[] = [
 
 const EDUCATION = [
   { when: 'Aug 2023 – Jul 2027', what: 'B.E. Civil Engineering, minor in Finance', where: 'BITS Pilani, Pilani campus' },
-  { when: '2022 – 23', what: 'Class 12, 89.6%', where: 'Delhi Public School, Jaipur · school topper in maths and chemistry' },
+  { when: '2022 – 23', what: 'Class 12, 89.4%', where: 'Delhi Public School, Jaipur · school topper in maths and chemistry' },
   { when: '2020 – 21', what: 'Class 10, 93.6%', where: 'Delhi Public School, Jaipur · school topper in mathematics' },
 ];
 

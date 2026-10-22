@@ -13,7 +13,7 @@ const TIMELINE = [
   { t: '2016', d: ['Silver at the Rajasthan district skating championship.', 'National Championships the year after.'] },
   { t: '2019 – 21', d: ['NCC cadet, 1 Raj Boys Battalion.'] },
   { t: '2021', d: ['Class 10 at DPS Jaipur, 93.6%. School topper in mathematics.'] },
-  { t: '2023', d: ['Class 12, 89.6%, school topper in maths and chemistry.', 'Cleared JEE Advanced, which got me IIT (ISM) Dhanbad. BITSAT, and my gut, took me to BITS Pilani’s Pilani campus for civil engineering.'] },
+  { t: '2023', d: ['Class 12, 89.4%, school topper in maths and chemistry.', 'Cleared JEE Advanced, which got me IIT (ISM) Dhanbad. BITSAT, and my gut, took me to BITS Pilani’s Pilani campus for civil engineering.'] },
   { t: '2024', d: ['First remote internship: product at House of Fandom, from one country to three.', 'Design and marketing intern at IIT Bombay Techfest.', 'Spotify go-to-market study.'] },
   { t: '2025', d: ['Operations analyst intern at Akshaya Patra: the water project.', 'Captain of skating and roll ball.', 'Head of social media and design at CEA.', 'Editor-in-Chief of L.I.T.E., the department magazine.', 'NSS Secretary.', 'InterBITS gold with the roll ball team.'] },
   { t: '2026', d: ['Eco-brick research funded.', 'AI Automation Intern at Univest.'] },
